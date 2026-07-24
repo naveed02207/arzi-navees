@@ -19,13 +19,13 @@ interface DepartmentSelectorProps {
 
 const getIcon = (name: string) => {
   switch (name) {
-    case "ShieldAlert": return <ShieldAlert className="w-5 h-5" />;
-    case "Zap": return <Zap className="w-5 h-5" />;
-    case "Building2": return <Building2 className="w-5 h-5" />;
-    case "FileCheck2": return <FileCheck2 className="w-5 h-5" />;
-    case "GraduationCap": return <GraduationCap className="w-5 h-5" />;
-    case "Landmark": return <Landmark className="w-5 h-5" />;
-    default: return <Landmark className="w-5 h-5" />;
+    case "ShieldAlert": return <ShieldAlert className="w-4 h-4" />;
+    case "Zap": return <Zap className="w-4 h-4" />;
+    case "Building2": return <Building2 className="w-4 h-4" />;
+    case "FileCheck2": return <FileCheck2 className="w-4 h-4" />;
+    case "GraduationCap": return <GraduationCap className="w-4 h-4" />;
+    case "Landmark": return <Landmark className="w-4 h-4" />;
+    default: return <Landmark className="w-4 h-4" />;
   }
 };
 
@@ -37,21 +37,24 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
   const selectedDept = DEPARTMENTS.find((d) => d.id === selectedDepartmentId) || DEPARTMENTS[0];
 
   return (
-    <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-4 sm:p-5 shadow-xl">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center space-x-2 space-x-reverse">
-          <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          <h2 className="text-sm sm:text-base font-semibold text-slate-200 font-urdu">
-            ۱. متعلقہ محکمہ یا دفتر کا انتخاب کریں (Select Department)
-          </h2>
+    <div className="bg-white rounded-xl border border-black/10 p-5 sm:p-6 shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+        <div>
+          <label className="text-[10px] uppercase tracking-widest font-bold text-[#8B735B] block">
+            01. Target Department (محکمہ / شعبہ)
+          </label>
+          <p className="text-xs text-[#1C1C1C]/60 font-urdu mt-0.5">
+            جس ڈائریکٹوریٹ یا محکمے کو درخواست ارسال کرنی ہو اس کا انتخاب کریں
+          </p>
         </div>
-        <span className="text-xs text-slate-400 font-urdu">
-          افسرِ مجاز: <strong className="text-emerald-400">{selectedDept.officerTitleUrdu}</strong>
-        </span>
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF9F6] border border-black/5 text-xs text-[#1C1C1C]">
+          <span className="text-[10px] uppercase tracking-wider font-semibold text-[#8B735B]">افسرِ مجاز:</span>
+          <strong className="font-urdu text-[#1C1C1C]">{selectedDept.officerTitleUrdu}</strong>
+        </div>
       </div>
 
       {/* Grid of Department Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {DEPARTMENTS.map((dept) => {
           const isSelected = dept.id === selectedDepartmentId;
           return (
@@ -59,24 +62,24 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
               key={dept.id}
               type="button"
               onClick={() => onSelectDepartment(dept)}
-              className={`relative flex flex-col items-start p-3 rounded-xl border text-right transition-all duration-200 group ${
+              className={`relative flex flex-col items-start p-3.5 rounded-lg border text-right transition-all duration-200 group ${
                 isSelected
-                  ? "bg-emerald-950/70 border-emerald-500/80 shadow-md shadow-emerald-950/40 text-emerald-100"
-                  : "bg-slate-950/60 border-slate-800/80 text-slate-300 hover:border-slate-700 hover:bg-slate-950"
+                  ? "bg-[#1C1C1C] border-[#1C1C1C] text-white shadow-md"
+                  : "bg-[#FAF9F6] border-black/10 text-[#1C1C1C] hover:border-[#8B735B] hover:bg-white"
               }`}
             >
               {isSelected && (
-                <CheckCircle2 className="absolute top-2 left-2 w-4 h-4 text-emerald-400" />
+                <CheckCircle2 className="absolute top-2.5 left-2.5 w-3.5 h-3.5 text-[#8B735B]" />
               )}
-              <div className={`p-2 rounded-lg mb-2 transition-transform group-hover:scale-105 ${
-                isSelected ? "bg-emerald-800/50 text-emerald-200" : "bg-slate-900 text-slate-400"
+              <div className={`p-2 rounded-md mb-2 transition-transform group-hover:scale-105 ${
+                isSelected ? "bg-[#8B735B] text-white" : "bg-white text-[#8B735B] border border-black/5"
               }`}>
                 {getIcon(dept.iconName)}
               </div>
               <span className="text-xs font-semibold font-urdu leading-tight text-right w-full">
                 {dept.nameUrdu}
               </span>
-              <span className="text-[10px] text-slate-400 font-sans mt-1 truncate w-full text-left">
+              <span className={`text-[10px] font-sans mt-1 truncate w-full text-left ${isSelected ? "text-stone-300" : "text-stone-500"}`}>
                 {dept.nameEnglish}
               </span>
             </button>
@@ -86,11 +89,11 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
 
       {/* Preset Complaint Quick Samples for the selected department */}
       {selectedDept.samples && selectedDept.samples.length > 0 && (
-        <div className="mt-4 pt-3 border-t border-slate-800/80">
-          <div className="flex items-center space-x-1.5 space-x-reverse mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="text-xs font-medium text-slate-300 font-urdu">
-              عام مثالیں (فوری انتخاب کریں):
+        <div className="mt-5 pt-4 border-t border-black/5">
+          <div className="flex items-center gap-2 mb-2.5">
+            <Sparkles className="w-3.5 h-3.5 text-[#8B735B]" />
+            <span className="text-[11px] uppercase tracking-wider font-bold text-[#8B735B] font-sans">
+              فوری شکایت کے نمونے (Preset Samples):
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -99,7 +102,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
                 key={idx}
                 type="button"
                 onClick={() => onSelectSamplePrompt(sample.descriptionUrdu, sample.titleUrdu)}
-                className="px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-emerald-950/60 border border-slate-800 hover:border-emerald-700/60 text-xs text-slate-300 hover:text-emerald-200 transition-colors font-urdu text-right"
+                className="px-3.5 py-1.5 rounded-md bg-[#FAF9F6] hover:bg-[#8B735B] hover:text-white border border-black/10 text-xs text-[#1C1C1C] font-urdu text-right transition-colors"
               >
                 ✦ {sample.titleUrdu}
               </button>
@@ -110,3 +113,4 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
     </div>
   );
 };
+

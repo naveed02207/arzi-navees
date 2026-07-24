@@ -3,12 +3,9 @@ import { OutputLanguage } from "../types";
 import { 
   Mic, 
   MicOff, 
-  FileEdit, 
-  Send, 
   Languages, 
   Eraser, 
-  Sparkles,
-  AlertCircle
+  Sparkles
 } from "lucide-react";
 
 interface ComplaintInputProps {
@@ -83,26 +80,28 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
   };
 
   return (
-    <div className="bg-slate-900/90 rounded-2xl border border-slate-800 p-4 sm:p-5 shadow-xl">
+    <div className="bg-white rounded-xl border border-black/10 p-5 sm:p-6 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-        <div className="flex items-center space-x-2 space-x-reverse">
-          <FileEdit className="w-5 h-5 text-emerald-400" />
-          <h2 className="text-sm sm:text-base font-semibold text-slate-200 font-urdu">
-            ۳. شکایت / واقعہ کی خام تفصیلات درج کریں (Raw Complaint Detail)
-          </h2>
+        <div>
+          <label className="text-[10px] uppercase tracking-widest font-bold text-[#8B735B] block">
+            03. Raw Grievance (شکایت / واقعہ کی خام تفصیلات)
+          </label>
+          <p className="text-xs text-[#1C1C1C]/60 font-urdu mt-0.5">
+            رومن اردو، سادہ اردو یا ٹوٹی پھوٹی انگریزی میں بغیر خوف و جھجھک اپنا مسئلہ لکھیں
+          </p>
         </div>
 
         {/* Output Language Toggle */}
-        <div className="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
-          <Languages className="w-3.5 h-3.5 text-slate-400 ml-2 mr-1" />
-          <span className="text-xs text-slate-400 ml-2 font-urdu">زبان:</span>
+        <div className="flex items-center bg-[#FAF9F6] p-1 rounded-lg border border-black/10 self-start sm:self-auto">
+          <Languages className="w-3.5 h-3.5 text-[#8B735B] ml-2 mr-1" />
+          <span className="text-[11px] text-[#1C1C1C]/70 ml-2 font-urdu font-medium">زبان خاکہ:</span>
           <button
             type="button"
             onClick={() => onLanguageChange("Urdu")}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors font-urdu ${
+            className={`px-3 py-1 rounded-md text-xs font-semibold transition-all font-urdu ${
               outputLanguage === "Urdu"
-                ? "bg-emerald-600 text-white shadow"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-[#8B735B] text-white shadow-sm"
+                : "text-[#1C1C1C]/70 hover:text-[#1C1C1C]"
             }`}
           >
             اردو (Urdu)
@@ -110,10 +109,10 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
           <button
             type="button"
             onClick={() => onLanguageChange("English")}
-            className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors font-sans ${
+            className={`px-3 py-1 rounded-md text-xs font-semibold transition-all font-sans ${
               outputLanguage === "English"
-                ? "bg-emerald-600 text-white shadow"
-                : "text-slate-400 hover:text-slate-200"
+                ? "bg-[#8B735B] text-white shadow-sm"
+                : "text-[#1C1C1C]/70 hover:text-[#1C1C1C]"
             }`}
           >
             English
@@ -121,30 +120,26 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
         </div>
       </div>
 
-      <p className="text-xs text-slate-400 mb-2 font-urdu">
-        آپ رومن اردو، سلیس اردو یا ٹوٹی پھوٹی انگریزی میں اپنا مسئلہ بیان کر سکتے ہیں۔ نظام خودکار طریقے سے باضابطہ قانونی و انتظامی درخواست تیار کرے گا۔
-      </p>
-
       {/* Main Textarea Area */}
-      <div className="relative">
+      <div className="relative mt-2">
         <textarea
           value={rawComplaint}
           onChange={(e) => onComplaintChange(e.target.value)}
           placeholder={`مثال کے طور پر:\n"Mera bijli ka meter LESCO ne overbilling ki waja se kaat diya hai. Bill 45 hazar aya hai jabke ghar mein sirf do pankhe aur ek fridge chal raha hai. Mianwali sub-division office gaye lekin SDO sahab ne sunwai nahi ki. Kindly bill sahi kar ke meter bahal kia jaye..."`}
           rows={5}
-          className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500 rounded-xl p-3.5 text-sm text-slate-100 placeholder-slate-600 focus:outline-none font-urdu leading-relaxed resize-y"
+          className="w-full bg-[#FAF9F6] border border-black/10 focus:border-[#8B735B] rounded-xl p-4 text-sm text-[#1C1C1C] placeholder:text-stone-400 focus:outline-none font-urdu leading-relaxed resize-y transition-colors"
         />
 
         {/* Voice Dictation Button & Clear */}
-        <div className="absolute bottom-3 left-3 flex items-center space-x-2">
+        <div className="absolute bottom-3 left-3 flex items-center gap-2">
           {speechSupported && (
             <button
               type="button"
               onClick={toggleRecording}
-              className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 isRecording
-                  ? "bg-red-600 text-white animate-pulse"
-                  : "bg-slate-800 hover:bg-slate-700 text-slate-300"
+                  ? "bg-rose-600 text-white animate-pulse"
+                  : "bg-white hover:bg-stone-100 text-[#1C1C1C] border border-black/10 shadow-sm"
               }`}
               title="بول کر متن درج کریں (Voice Dictation)"
             >
@@ -155,8 +150,8 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
                 </>
               ) : (
                 <>
-                  <Mic className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-urdu">بول کر لکھیں</span>
+                  <Mic className="w-3.5 h-3.5 text-[#8B735B]" />
+                  <span className="font-urdu">بول کر لکھیں (Urdu Dictation)</span>
                 </>
               )}
             </button>
@@ -166,7 +161,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
             <button
               type="button"
               onClick={() => onComplaintChange("")}
-              className="p-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs"
+              className="p-1.5 rounded-lg bg-white hover:bg-stone-100 text-stone-500 hover:text-stone-800 border border-black/10 text-xs shadow-sm"
               title="متن صاف کریں"
             >
               <Eraser className="w-3.5 h-3.5" />
@@ -177,29 +172,29 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
 
       {/* Length count & Submit button */}
       <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="text-xs text-slate-500 font-urdu">
-          حروف کی تعداد: <span className="text-slate-300">{rawComplaint.length}</span>
+        <div className="text-xs text-stone-500 font-urdu">
+          حروف کی تعداد: <span className="font-bold text-[#1C1C1C]">{rawComplaint.length}</span>
         </div>
 
         <button
           type="button"
           onClick={onSubmitDraft}
           disabled={isLoading || !rawComplaint.trim()}
-          className={`w-full sm:w-auto px-6 py-2.5 rounded-xl font-semibold text-sm font-urdu flex items-center justify-center space-x-2 space-x-reverse transition-all duration-200 ${
+          className={`w-full sm:w-auto px-8 py-3.5 rounded-lg font-bold text-xs font-urdu uppercase tracking-[0.1em] flex items-center justify-center gap-2 transition-all duration-200 ${
             isLoading || !rawComplaint.trim()
-              ? "bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700"
-              : "bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white shadow-lg shadow-emerald-950/60 border border-emerald-400/30 active:scale-[0.98]"
+              ? "bg-stone-200 text-stone-400 cursor-not-allowed border border-stone-300"
+              : "bg-[#8B735B] hover:bg-[#735F4B] text-white shadow-md active:scale-[0.99]"
           }`}
         >
           {isLoading ? (
             <>
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin ml-2" />
-              <span>درخواست تحریر کی جا رہی ہے...</span>
+              <span>قانونی خاکہ تیار ہو رہا ہے...</span>
             </>
           ) : (
             <>
-              <Sparkles className="w-4 h-4 ml-2 text-emerald-200" />
-              <span>باضابطہ قانونی درخواست تحریر کریں</span>
+              <Sparkles className="w-4 h-4 text-amber-200" />
+              <span>باضابطہ قانونی درخواست تیار کریں</span>
             </>
           )}
         </button>
@@ -207,3 +202,4 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
     </div>
   );
 };
+
