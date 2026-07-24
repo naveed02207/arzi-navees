@@ -1,0 +1,168 @@
+export interface Department {
+  id: string;
+  nameUrdu: string;
+  nameEnglish: string;
+  officerTitleUrdu: string;
+  officerTitleEnglish: string;
+  iconName: string;
+  badgeColor: string;
+  samples: {
+    titleUrdu: string;
+    titleEnglish: string;
+    descriptionRoman: string;
+    descriptionUrdu: string;
+  }[];
+}
+
+export const DEPARTMENTS: Department[] = [
+  {
+    id: "police",
+    nameUrdu: "پولیس محکمہ (FIR و درخواست جات)",
+    nameEnglish: "Police Department (FIR & Complaints)",
+    officerTitleUrdu: "بخدمت جناب ایس ایچ او صاحب",
+    officerTitleEnglish: "To, The Station House Officer (SHO)",
+    iconName: "ShieldAlert",
+    badgeColor: "bg-red-500/20 text-red-300 border-red-500/30",
+    samples: [
+      {
+        titleUrdu: "موبائل فون / گمشدگی شناختی کارڈ",
+        titleEnglish: "Lost Mobile / CNIC Application",
+        descriptionRoman: "Mera mobile / CNIC market se choori ho gaya hai, police report karwani hai raseed ke liye.",
+        descriptionUrdu: "میرا موبائل اور شناختی کارڈ بازار میں گم ہو گیا ہے، برائے کرم رپورٹ درج فرما کر تصدیقی رسیّد جاری کریں۔"
+      },
+      {
+        titleUrdu: "گھر میں چوری کی رپورٹ",
+        titleEnglish: "House Burglary / Theft FIR Request",
+        descriptionRoman: "Raat ko ghar ke taalay torr kar chor cash aur zewar le gaye, FIR darj karain.",
+        descriptionUrdu: "گزشتہ شب نامعلوم چوروں نے گھر کے تالے توڑ کر نقدی و زیورات چوری کر لیے، قانون کے مطابق باقاعدہ ایف آئی آر درج کی جائے۔"
+      },
+      {
+        titleUrdu: "ہمسائے سے تنازع و دھمکیاں",
+        titleEnglish: "Harassment & Property Dispute",
+        descriptionRoman: "Hamsaya gali mein zabardasti qabza kar raha hai aur dhamkiyan de raha hai.",
+        descriptionUrdu: "ہمسایہ گلی کی مشترکہ جگہ پر بدمعاشی سے قبضہ کر رہا ہے اور منع کرنے پر سنگین نتائج کی دھمکیاں دے رہا ہے۔"
+      }
+    ]
+  },
+  {
+    id: "wapda",
+    nameUrdu: "واپڈا / بجلی کمپنیاں (LESCO/KE/FESCO)",
+    nameEnglish: "WAPDA & Power Utilities (LESCO/KE/FESCO)",
+    officerTitleUrdu: "بخدمت جناب ایس ڈی او صاحب (واپڈا)",
+    officerTitleEnglish: "To, The Sub-Divisional Officer (SDO), WAPDA",
+    iconName: "Zap",
+    badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+    samples: [
+      {
+        titleUrdu: "اوور بلنگ کی تصحیح",
+        titleEnglish: "Electricity Overbilling Correction",
+        descriptionRoman: "Is mahine bill 40,000 aya hai jabke meter reading sirf 200 unit hai, bill sahi kia jaye.",
+        descriptionUrdu: "اس ماہ بجلی کا بل چالیس ہزار روپے آیا ہے جبکہ میٹر کی حقیقی ریڈنگ صرف ۲۰۰ یونٹ ہے۔ اوور بلنگ کی تصحیح فرمائی جائے۔"
+      },
+      {
+        titleUrdu: "سوزیدہ میٹر کی تبدیلی",
+        titleEnglish: "Burnt Meter Replacement",
+        descriptionRoman: "Bijli ka meter short circuit se jal gaya hai, naya meter lagwaya jaye.",
+        descriptionUrdu: "شارٹ سرکٹ کی وجہ سے بجلی کا میٹر جل چکا ہے، سائل کی برقی سپلائی بحال کر کے نیا میٹر نصب کیا جائے۔"
+      },
+      {
+        titleUrdu: "ٹرانسفارمر کی خرابی",
+        titleEnglish: "Faulty Neighborhood Transformer",
+        descriptionRoman: "Gali ka transformer teen din se kharab hai, garmi mein bijli band hai.",
+        descriptionUrdu: "محلے کا ٹرانسفارمر گزشتہ تین روز سے جل چکا ہے، سائلین شدید گرمی میں بجلی سے محروم ہیں، فوری ترمیم و بحالی کی جائے۔"
+      }
+    ]
+  },
+  {
+    id: "municipal",
+    nameUrdu: "بلدیہ / بلدیاتی کمیٹی / واسا (WASA)",
+    nameEnglish: "Municipal Committee / WASA / TMA",
+    officerTitleUrdu: "بخدمت جناب چیف آفیسر / ایڈمنسٹریٹر صاحب",
+    officerTitleEnglish: "To, The Chief Officer / Administrator, Municipal Committee",
+    iconName: "Building2",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    samples: [
+      {
+        titleUrdu: "سیوریج کا گندا پانی و نالیوں کی بندش",
+        titleEnglish: "Sewerage Overflow & Drainage",
+        descriptionRoman: "Gali mein ganda pani khara hai, naliyan band hain, bimariyan phail rahi hain.",
+        descriptionUrdu: "محلے میں سیوریج کی نالیاں ابل رہی ہیں اور گندا پانی گلیوں میں جمع ہے۔ فوری صفائی اور ڈرینیج سسٹم درست کیا جائے۔"
+      },
+      {
+        titleUrdu: "پینے کے پانی کی عدم فراہمی",
+        titleEnglish: "Contaminated / Missing Water Supply",
+        descriptionRoman: "Hafte se nalay mein pani nahi aa raha aur jo ata hai wo ganda hai.",
+        descriptionUrdu: "گزشتہ ایک ہفتے سے سرکاری واٹر سپلائی کی لائن میں پانی نہیں آ رہا، فوری طور پر پاک اور صاف پانی کی فراہمی یقینی بنائی جائے۔"
+      }
+    ]
+  },
+  {
+    id: "nadra",
+    nameUrdu: "نادرا (NADRA - قومی اندراج)",
+    nameEnglish: "NADRA (National Database)",
+    officerTitleUrdu: "بخدمت جناب انچارج صاحب نادرا سنٹر",
+    officerTitleEnglish: "To, The In-charge, NADRA Registration Center",
+    iconName: "FileCheck2",
+    badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+    samples: [
+      {
+        titleUrdu: "شناختی کارڈ پر نام کے املاء کی تصحیح",
+        titleEnglish: "CNIC Name Spelling Rectification",
+        descriptionRoman: "Mera naam CNIC pe galat likha gaya hai, Matric certificate ke mutabiq sahi kia jaye.",
+        descriptionUrdu: "سائل کے شناختی کارڈ پر نام کے املاء کی غلطی درج ہو گئی ہے، تعلیمی اسناد کے مطابق نام کی درستی فرمائی جائے۔"
+      },
+      {
+        titleUrdu: "فیملی ٹری (FRC) ریکارڈ کی درستی",
+        titleEnglish: "Family Tree (FRC) Error Fix",
+        descriptionRoman: "FRC mein bhai ka naam gayab hai, record update kia jaye.",
+        descriptionUrdu: "نادرا فیملی رجسٹریشن سرٹیفکیٹ (FRC) میں سائل کے بھائی کا نام غلطی سے حذف ہو گیا ہے، فیملی ریکارڈ اپ ڈیٹ کیا جائے۔"
+      }
+    ]
+  },
+  {
+    id: "education",
+    nameUrdu: "تعلیمی بورڈز و جامعات (BISE / University)",
+    nameEnglish: "Educational Boards & Universities",
+    officerTitleUrdu: "بخدمت جناب کنٹرولر امتحانات / رجسٹرار صاحب",
+    officerTitleEnglish: "To, The Controller of Examinations / Registrar",
+    iconName: "GraduationCap",
+    badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+    samples: [
+      {
+        titleUrdu: "جامعہ کی فیس اقساط میں ادا کرنے کی درخواست",
+        titleEnglish: "University Fee Installment Request",
+        descriptionRoman: "Mali halat kharab hone ki waja se poori semester fee ek sath nahi de sakta, iqsat kar dain.",
+        descriptionUrdu: "سائل کے والد صاحب کی مالی حالت ناگفتہ بہ ہونے کے باعث سمسٹر فیس ایک ساتھ ادا کرنا ناممکن ہے، برائے مہربانی اقساط کی اجازت دی جائے۔"
+      },
+      {
+        titleUrdu: "ڈگری و سرٹیفکیٹ کی ارجنٹ تصدیق",
+        titleEnglish: "Urgent Degree Verification",
+        descriptionRoman: "Job visa ke liye degree ki urgent verification chahiye.",
+        descriptionUrdu: "سائل کو غیر ملکی ویزا کے لیے اپنی ڈگری کی ہنگامی بنیادوں پر تصدیق درکار ہے، مرحلہ جلد از جلد مکمل کیا جائے۔"
+      }
+    ]
+  },
+  {
+    id: "general",
+    nameUrdu: "ڈپٹی کمشنر / محتسبِ اعلیٰ (DC / Ombudsman)",
+    nameEnglish: "Deputy Commissioner / Ombudsman Office",
+    officerTitleUrdu: "بخدمت جناب ڈپٹی کمشنر صاحب / محتسب اعلیٰ",
+    officerTitleEnglish: "To, The Deputy Commissioner (DC) / Ombudsman",
+    iconName: "Landmark",
+    badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
+    samples: [
+      {
+        titleUrdu: "گراں فروشی و ذخیرہ اندوزی کا ازالہ",
+        titleEnglish: "Illegal Profiteering & Price Gouging",
+        descriptionRoman: "Market mein dukan daar sarkari rate list se dugna qeemat wasool kar rahe hain.",
+        descriptionUrdu: "مقامی مارکیٹ میں دکاندار سرکاری ریٹ لسٹ کی خلاف ورزی کرتے ہوئے گراں فروشی کر رہے ہیں، سخت انتظامی کارروائی کی جائے۔"
+      },
+      {
+        titleUrdu: "سرکاری محکمے کی عدم توجہی / تاخیر کا ازالہ",
+        titleEnglish: "Public Administrative Delay Complaint",
+        descriptionRoman: "Mera file do mahine se daftar mein roka gaya hai, koi sunwai nahi ho rahi.",
+        descriptionUrdu: "سائل کا قانونی کیس بلا جواز دو ماہ سے روکا گیا ہے، داد رسی فرما کر ذمہ داران سے جواب طلبی کی جائے۔"
+      }
+    ]
+  }
+];

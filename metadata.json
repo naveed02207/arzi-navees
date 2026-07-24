@@ -1,0 +1,10 @@
+{
+  "name": "Arzi-Navees - Legal Application Draftsman",
+  "description": "Expert Legal Draftsman (عریضہ نویس) and Public Service Clerk for Pakistani administrative applications and legal complaints.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

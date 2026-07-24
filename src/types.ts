@@ -1,0 +1,32 @@
+export interface ApplicantDetails {
+  name: string;
+  fatherName: string;
+  cnic: string;
+  phone: string;
+  address: string;
+  city: string;
+  date: string;
+}
+
+export type OutputLanguage = "Urdu" | "English";
+
+export interface DraftRequest {
+  departmentId: string;
+  departmentName: string;
+  officerTitle: string;
+  outputLanguage: OutputLanguage;
+  applicant: ApplicantDetails;
+  rawComplaint: string;
+}
+
+export interface DraftResponse {
+  applicationText: string;
+  legalNotes?: string;
+  timestamp: string;
+  id: string;
+  request: DraftRequest;
+}
+
+export interface SavedDraftItem extends DraftResponse {
+  title: string;
+}
