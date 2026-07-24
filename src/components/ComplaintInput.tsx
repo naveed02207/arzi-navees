@@ -7,6 +7,7 @@ import {
   Eraser, 
   Sparkles
 } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface ComplaintInputProps {
   rawComplaint: string;
@@ -28,6 +29,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
   departmentName,
 }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
+  const { t, getTextClass } = useLanguage();
   const [speechSupported, setSpeechSupported] = useState<boolean>(false);
   const [recognition, setRecognition] = useState<any>(null);
 
@@ -80,14 +82,14 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         <div>
-          <label className="text-[10px] uppercase tracking-widest font-bold text-emerald-700 block">
-            03. Raw Grievance (شکایت / واقعہ کی خام تفصیلات)
+          <label className={getTextClass("text-[10px] uppercase tracking-widest font-bold text-emerald-700 dark:text-emerald-400 block")}>
+            {t("lbl_grievance")}
           </label>
-          <p className="text-xs text-gray-500 font-urdu mt-0.5">
-            رومن اردو، سادہ اردو یا ٹوٹی پھوٹی انگریزی میں بغیر خوف و جھجھک اپنا مسئلہ لکھیں
+          <p className={getTextClass("text-xs text-gray-500 dark:text-gray-400 mt-0.5")}>
+            Describe your issue here freely in any language
           </p>
         </div>
 
@@ -127,7 +129,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
           onChange={(e) => onComplaintChange(e.target.value)}
           placeholder={`مثال کے طور پر:\n"Mera bijli ka meter LESCO ne overbilling ki waja se kaat diya hai. Bill 45 hazar aya hai jabke ghar mein sirf do pankhe aur ek fridge chal raha hai. Mianwali sub-division office gaye lekin SDO sahab ne sunwai nahi ki. Kindly bill sahi kar ke meter bahal kia jaye..."`}
           rows={5}
-          className="w-full bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-xl p-4 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none font-urdu leading-relaxed resize-y transition-colors"
+          className={getTextClass("w-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-xl p-4 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none leading-relaxed resize-y transition-colors")}
         />
 
         {/* Voice Dictation Button & Clear */}
@@ -180,21 +182,21 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
           type="button"
           onClick={onSubmitDraft}
           disabled={isLoading || !rawComplaint.trim()}
-          className={`w-full sm:w-auto px-8 py-3.5 rounded-lg font-bold text-xs font-urdu tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ease-in-out ${
+          className={`w-full sm:w-auto px-8 py-3.5 rounded-lg font-bold text-xs tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ease-in-out ${getTextClass("")} ${
             isLoading || !rawComplaint.trim()
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed border border-gray-200"
+              ? "bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed border border-gray-300 dark:border-gray-600"
               : "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg hover:shadow-emerald-500/50 hover:-translate-y-0.5 active:scale-[0.98]"
           }`}
         >
           {isLoading ? (
             <>
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin ml-2" />
-              <span>قانونی خاکہ تیار ہو رہا ہے...</span>
+              <span>Drafting...</span>
             </>
           ) : (
             <>
               <Sparkles className="w-4 h-4 text-emerald-100" />
-              <span>باضابطہ قانونی درخواست تیار کریں</span>
+              <span>{t("btn_generate")}</span>
             </>
           )}
         </button>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ApplicantDetails } from "../types";
 import { User, Phone, CreditCard, MapPin, ChevronDown, ChevronUp, UserCheck, Save, RefreshCw, Trash2 } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface ApplicantFormProps {
   applicant: ApplicantDetails;
@@ -14,6 +15,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
   outputLanguage,
 }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
+  const { t, getTextClass } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -59,25 +61,25 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
   const hasStoredData = Boolean(applicant.name || applicant.cnic || applicant.phone);
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       <div
         className="flex items-center justify-between cursor-pointer select-none"
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div>
           <div className="flex items-center gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-emerald-700 block">
-              02. Applicant Details (سائل / درخواست دہندہ کے کوائف)
+            <label className={getTextClass("text-[10px] uppercase tracking-widest font-bold text-emerald-700 dark:text-emerald-400 block")}>
+              {t("lbl_applicant")}
             </label>
             {hasStoredData && (
-              <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-100">
+              <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-semibold border border-emerald-100 dark:border-emerald-800/50">
                 <Save className="w-2.5 h-2.5" />
-                <span>محفوظ شدہ (Auto-Saved)</span>
+                <span className={getTextClass("")}>Auto-Saved</span>
               </span>
             )}
           </div>
-          <p className="text-xs text-gray-500 font-urdu mt-0.5">
-            نام، شناختی کارڈ اور رابطہ نمبر خودکار طور پر مستقبل کے استعمال کے لیے محفوظ ہو جاتا ہے
+          <p className={getTextClass("text-xs text-gray-500 dark:text-gray-400 mt-0.5")}>
+            Your details are saved locally for future use
           </p>
         </div>
 
@@ -88,9 +90,9 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
               e.stopPropagation();
               autofillPlaceholders();
             }}
-            className="text-[11px] px-3 py-1 rounded bg-gray-50 hover:bg-emerald-600 hover:text-white text-gray-700 font-urdu border border-gray-200 transition-colors shadow-sm"
+            className={getTextClass("text-[11px] px-3 py-1 rounded bg-gray-50 dark:bg-gray-800 hover:bg-emerald-600 dark:hover:bg-emerald-600 hover:text-white text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 transition-colors shadow-sm")}
           >
-            مثالی کوائف درج کریں
+            Auto-fill
           </button>
           
           {hasStoredData && (
@@ -100,7 +102,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 e.stopPropagation();
                 clearApplicantInfo();
               }}
-              className="p-1 rounded text-gray-400 hover:text-red-600 transition-colors"
+              className="p-1 rounded text-gray-400 hover:text-red-600 dark:hover:text-red-500 transition-colors"
               title="تمام کوائف صاف کریں"
             >
               <Trash2 className="w-4 h-4" />
@@ -120,8 +122,8 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
           
           {/* Name */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              سائل کا مکمل نام (Applicant Name)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              {t("placeholder_name")}
             </label>
             <div className="relative">
               <input
@@ -130,15 +132,15 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.name}
                 onChange={handleInputChange}
                 placeholder={outputLanguage === "Urdu" ? "مثلاً: محمد احمد قریشی" : "e.g. Muhammad Ahmed Qureshi"}
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-urdu transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
               />
             </div>
           </div>
 
           {/* Father/Husband Name */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              ولدیت / زوجیت (Father/Husband Name)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              Father/Husband Name
             </label>
             <div className="relative">
               <input
@@ -147,15 +149,15 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.fatherName}
                 onChange={handleInputChange}
                 placeholder={outputLanguage === "Urdu" ? "مثلاً: عبدالرشید قریشی" : "e.g. Abdul Rasheed"}
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-urdu transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
               />
             </div>
           </div>
 
           {/* CNIC */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              قومی شناختی کارڈ نمبر (CNIC Number)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              {t("placeholder_cnic")}
             </label>
             <div className="relative">
               <input
@@ -164,15 +166,16 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.cnic}
                 onChange={handleInputChange}
                 placeholder="35202-1245890-1"
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-sans transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
+                dir="ltr"
               />
             </div>
           </div>
 
           {/* Phone */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              موبائل / رابطہ نمبر (Mobile Number)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              {t("placeholder_mobile")}
             </label>
             <div className="relative">
               <input
@@ -181,15 +184,16 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.phone}
                 onChange={handleInputChange}
                 placeholder="0300-4589012"
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-sans transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
+                dir="ltr"
               />
             </div>
           </div>
 
           {/* Address */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              موجودہ پتہ (Street Address)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              {t("placeholder_address")}
             </label>
             <div className="relative">
               <input
@@ -198,15 +202,15 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.address}
                 onChange={handleInputChange}
                 placeholder={outputLanguage === "Urdu" ? "مکان نمبر ۴۵، بلاک بی، ماڈل ٹاؤن" : "House 45, Block B, Model Town"}
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-urdu transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
               />
             </div>
           </div>
 
           {/* City */}
           <div className="space-y-1">
-            <label className="block text-xs font-semibold text-gray-700 font-urdu">
-              ضلع / شہر (City / District)
+            <label className={getTextClass("block text-sm font-semibold text-gray-700 dark:text-gray-300")}>
+              {t("placeholder_city")}
             </label>
             <div className="relative">
               <input
@@ -215,7 +219,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
                 value={applicant.city}
                 onChange={handleInputChange}
                 placeholder={outputLanguage === "Urdu" ? "مثلاً: لاہور / کراچی / اسلام آباد" : "e.g. Lahore / Karachi"}
-                className="w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none font-urdu transition-colors"
+                className={getTextClass("w-full bg-transparent border-b border-gray-300 dark:border-gray-700 focus:border-emerald-500 py-1.5 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors")}
               />
             </div>
           </div>

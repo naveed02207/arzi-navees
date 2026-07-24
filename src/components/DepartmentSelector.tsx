@@ -1,5 +1,6 @@
 import React from "react";
 import { DEPARTMENTS, Department } from "../data/departments";
+import { useLanguage } from "../contexts/LanguageContext";
 import { 
   ShieldAlert, 
   Zap, 
@@ -34,27 +35,24 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
   onSelectDepartment,
   onSelectSamplePrompt,
 }) => {
+  const { t, getTextClass } = useLanguage();
   const selectedDept = DEPARTMENTS.find((d) => d.id === selectedDepartmentId) || DEPARTMENTS[0];
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-5">
         <div>
-          <label className="text-[10px] uppercase tracking-widest font-bold text-emerald-700 block">
-            01. Target Department (محکمہ / شعبہ)
+          <label className={getTextClass("text-[10px] uppercase tracking-widest font-bold text-emerald-700 dark:text-emerald-400 block")}>
+            {t("lbl_department")}
           </label>
-          <p className="text-xs text-gray-500 font-urdu mt-0.5">
-            جس ڈائریکٹوریٹ یا محکمے کو درخواست ارسال کرنی ہو اس کا انتخاب کریں
+          <p className={getTextClass("text-xs text-gray-500 dark:text-gray-400 mt-1")}>
+            Select the relevant department or directorate for your application
           </p>
-        </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-xs">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-700">افسرِ مجاز:</span>
-          <strong className="font-urdu text-emerald-900">{selectedDept.officerTitleUrdu}</strong>
         </div>
       </div>
 
       {/* Grid of Department Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {DEPARTMENTS.map((dept) => {
           const isSelected = dept.id === selectedDepartmentId;
           return (
@@ -82,6 +80,12 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
               <span className={`text-[10px] font-sans mt-1 truncate w-full text-left ${isSelected ? "text-emerald-100" : "text-gray-500"}`}>
                 {dept.nameEnglish}
               </span>
+              {isSelected && (
+                <div className="mt-3 w-full border-t border-emerald-600 pt-2 flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-wider font-semibold text-emerald-200">افسرِ مجاز:</span>
+                  <strong className="font-urdu text-xs text-white">{dept.officerTitleUrdu}</strong>
+                </div>
+              )}
             </button>
           );
         })}
