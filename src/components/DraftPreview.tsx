@@ -39,17 +39,17 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
 
   if (!draftResponse) {
     return (
-      <div className="bg-white rounded-xl border border-black/10 p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[380px] shadow-sm">
-        <div className="w-14 h-14 rounded-full bg-[#FAF9F6] border border-black/10 flex items-center justify-center text-[#8B735B] mb-4">
-          <Scale className="w-7 h-7 text-[#8B735B]" />
+      <div className="bg-white rounded-xl shadow-md p-8 sm:p-12 text-center flex flex-col items-center justify-center min-h-[380px] transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 mb-4 shadow-sm">
+          <Scale className="w-8 h-8 text-emerald-700" />
         </div>
-        <label className="text-[10px] uppercase tracking-widest font-bold text-[#8B735B] block mb-1">
+        <label className="text-[10px] uppercase tracking-widest font-bold text-emerald-700 block mb-1">
           04. Official Draft & Preview
         </label>
-        <h3 className="text-base font-bold text-[#1C1C1C] font-urdu mb-2">
+        <h3 className="text-base font-bold text-gray-900 font-urdu mb-2">
           قانونی درخواست کا باضابطہ پیش نظارہ (Document Preview)
         </h3>
-        <p className="text-xs text-[#1C1C1C]/60 font-urdu max-w-md leading-relaxed">
+        <p className="text-xs text-gray-500 font-urdu max-w-md leading-relaxed">
           اپنا متعلقہ محکمہ منتخب کریں اور شکایت کی تفصیلات درج کر کے "باضابطہ قانونی درخواست تیار کریں" کے بٹن پر کلک کریں۔ یہاں قانونی کاغذ پر باضابطہ درخواست تیار ظاہر ہو گی۔
         </p>
       </div>
@@ -144,15 +144,15 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
     <div className="space-y-5">
       
       {/* Section Label & Top Action Ribbon (Hidden when printing) */}
-      <div className="bg-white rounded-xl border border-black/10 p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 no-print shadow-sm">
+      <div className="bg-white rounded-xl shadow-md p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 no-print transition-all duration-300 hover:shadow-lg">
         <div>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#8B735B]" />
-            <label className="text-[10px] uppercase tracking-widest font-bold text-[#8B735B]">
+            <Sparkles className="w-4 h-4 text-emerald-600" />
+            <label className="text-[10px] uppercase tracking-widest font-bold text-emerald-700">
               04. Official Draft Preview (پیش نظارہ خاکہ)
             </label>
           </div>
-          <span className="text-xs text-[#1C1C1C]/70 font-urdu">
+          <span className="text-xs text-gray-500 font-urdu">
             خاکہ تیار ہے۔ آپ ترمیم کر سکتے ہیں یا فوری PDF/پرنٹ حاصل کر سکتے ہیں۔
           </span>
         </div>
@@ -162,25 +162,25 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
           <button
             type="button"
             onClick={isEditing ? saveEdit : startEdit}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#FAF9F6] hover:bg-stone-100 text-[#1C1C1C] border border-black/10 transition-colors font-urdu"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors font-urdu"
           >
-            <Edit3 className="w-3.5 h-3.5 text-[#8B735B]" />
+            <Edit3 className="w-4 h-4 text-emerald-600" />
             <span>{isEditing ? "محفوظ کریں (Save)" : "ترمیم کریں (Edit)"}</span>
           </button>
 
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#FAF9F6] hover:bg-stone-100 text-[#1C1C1C] border border-black/10 transition-colors font-urdu"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors font-urdu"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <Check className="w-4 h-4 text-emerald-600" />
                 <span className="text-emerald-700">کاپی ہو گیا!</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-[#8B735B]" />
+                <Copy className="w-4 h-4 text-emerald-600" />
                 <span>کاپی کریں</span>
               </>
             )}
@@ -189,9 +189,9 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
           <button
             type="button"
             onClick={handleDownloadTxt}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-[#FAF9F6] hover:bg-stone-100 text-[#1C1C1C] border border-black/10 transition-colors font-urdu"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 transition-colors font-urdu"
           >
-            <Download className="w-3.5 h-3.5 text-[#8B735B]" />
+            <Download className="w-4 h-4 text-emerald-600" />
             <span>TXT</span>
           </button>
 
@@ -200,11 +200,11 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
             onClick={() => onSaveToHistory(draftResponse)}
             className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors font-urdu ${
               isSaved
-                ? "bg-[#8B735B]/10 text-[#8B735B] border-[#8B735B]/30"
-                : "bg-[#FAF9F6] hover:bg-stone-100 text-[#1C1C1C] border-black/10"
+                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                : "bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200"
             }`}
           >
-            <Bookmark className={`w-3.5 h-3.5 ${isSaved ? "fill-[#8B735B] text-[#8B735B]" : "text-[#8B735B]"}`} />
+            <Bookmark className={`w-4 h-4 ${isSaved ? "fill-emerald-600 text-emerald-600" : "text-emerald-600"}`} />
             <span>{isSaved ? "محفوظ ہے" : "محفوظ کریں"}</span>
           </button>
 
@@ -213,16 +213,16 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
             type="button"
             onClick={handleExportPdf}
             disabled={isPdfGenerating}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold bg-[#8B735B] hover:bg-[#735F4B] text-white shadow-sm transition-all font-urdu"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all font-urdu"
           >
             {isPdfGenerating ? (
               <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
                 <span>PDF ڈاؤن لوڈ ہو رہا ہے...</span>
               </>
             ) : (
               <>
-                <FileDown className="w-3.5 h-3.5 text-amber-100" />
+                <FileDown className="w-4 h-4 text-emerald-100" />
                 <span>Export to PDF</span>
               </>
             )}
@@ -232,9 +232,9 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
           <button
             type="button"
             onClick={handlePrint}
-            className="flex items-center gap-1 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-[#1C1C1C] hover:bg-stone-800 text-white transition-all font-urdu"
+            className="flex items-center gap-1 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-gray-900 hover:bg-black text-white transition-all font-urdu"
           >
-            <Printer className="w-3.5 h-3.5" />
+            <Printer className="w-4 h-4" />
             <span>پرنٹ کریں</span>
           </button>
 
@@ -244,23 +244,23 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
       {/* Main Printable Editorial Document Paper Canvas */}
       <div 
         id="printable-document-paper"
-        className="bg-white text-[#1C1C1C] rounded-xl border border-black/10 p-8 sm:p-14 document-shadow legal-paper relative overflow-hidden my-2"
+        className="bg-white text-gray-900 rounded-xl border border-gray-200 p-8 sm:p-14 document-shadow legal-paper relative overflow-hidden my-2 shadow-xl"
       >
         
         {/* Editorial Official Stamp Header Pattern */}
-        <div className="text-center pb-6 mb-8 border-b-2 border-[#1C1C1C]">
+        <div className="text-center pb-6 mb-8 border-b-2 border-gray-900">
           <div className="flex items-center justify-center gap-3 mb-1.5">
-            <div className="w-7 h-7 rounded-full border border-[#8B735B] flex items-center justify-center text-[#8B735B] font-bold text-xs">
+            <div className="w-7 h-7 rounded-full border border-emerald-700 flex items-center justify-center text-emerald-700 font-bold text-xs">
               ★
             </div>
-            <h1 className="text-base sm:text-lg font-serif font-bold tracking-widest text-[#1C1C1C] uppercase">
+            <h1 className="text-base sm:text-lg font-serif font-bold tracking-widest text-gray-900 uppercase">
               {isUrdu ? "اسلامی جمہوریہ پاکستان — بمسودہ باضابطہ درخواست" : "OFFICIAL ADMINISTRATIVE APPLICATION — PAKISTAN"}
             </h1>
-            <div className="w-7 h-7 rounded-full border border-[#8B735B] flex items-center justify-center text-[#8B735B] font-bold text-xs">
+            <div className="w-7 h-7 rounded-full border border-emerald-700 flex items-center justify-center text-emerald-700 font-bold text-xs">
               ★
             </div>
           </div>
-          <p className="text-[10px] text-[#8B735B] font-serif uppercase tracking-[0.2em] font-semibold">
+          <p className="text-[10px] text-emerald-700 font-serif uppercase tracking-[0.2em] font-semibold">
             GOVERNMENT OF PAKISTAN • PUBLIC SERVICE & GRIEVANCE RELIEF CLERK
           </p>
         </div>
@@ -271,13 +271,13 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
             rows={18}
-            className={`w-full bg-[#FAF9F6] border border-black/10 rounded-lg p-4 text-[#1C1C1C] focus:outline-none resize-y ${
-              isUrdu ? "urdu-text" : "font-serif text-sm text-left leading-relaxed"
+            className={`w-full bg-[#FAF9F6] dark:bg-stone-900 border border-black/10 dark:border-stone-800 rounded-lg p-4 text-gray-900 dark:text-gray-100 focus:outline-none resize-y ${
+              isUrdu ? "urdu-text" : "font-serif text-sm text-left leading-relaxed whitespace-pre-wrap"
             }`}
           />
         ) : (
           <div
-            className={`whitespace-pre-wrap text-[#1C1C1C] selection:bg-[#8B735B]/20 ${
+            className={`whitespace-pre-wrap text-gray-900 dark:text-gray-100 selection:bg-[#8B735B]/20 ${
               isUrdu ? "urdu-text" : "font-serif text-sm text-left leading-relaxed"
             }`}
             style={{ direction: isUrdu ? "rtl" : "ltr" }}
@@ -299,21 +299,21 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
 
       {/* Supplemental Legal Notes & Attachments Checklist (Hidden on Print) */}
       {draftResponse.legalNotes && (
-        <div className="bg-white rounded-xl border border-black/10 p-6 no-print shadow-sm">
+        <div className="bg-white rounded-xl shadow-md p-6 no-print transition-all duration-300 hover:shadow-lg">
           <div className="flex items-center gap-2 mb-3">
-            <AlertCircle className="w-4 h-4 text-[#8B735B]" />
-            <h3 className="text-xs font-bold text-[#1C1C1C] font-urdu uppercase tracking-wider">
+            <AlertCircle className="w-5 h-5 text-emerald-600" />
+            <h3 className="text-xs font-bold text-gray-900 font-urdu uppercase tracking-wider">
               ضروری دستاویزات و قانونی تجاویز (Required Attachments & Action Checklist)
             </h3>
           </div>
 
-          <div className="bg-[#FAF9F6] p-4 rounded-lg border border-black/5 text-xs text-[#1C1C1C] font-urdu leading-relaxed whitespace-pre-line">
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 text-xs text-gray-800 font-urdu leading-relaxed whitespace-pre-line">
             {draftResponse.legalNotes}
           </div>
 
           {/* Ask Follow-up Legal Question Input */}
-          <div className="mt-5 pt-4 border-t border-black/5">
-            <label className="block text-xs font-semibold text-[#1C1C1C] mb-1.5 font-urdu">
+          <div className="mt-5 pt-4 border-t border-gray-100">
+            <label className="block text-xs font-semibold text-gray-900 mb-1.5 font-urdu">
               کیا آپ کو اس درخواست کی جمع آوری یا اگلی قانونی کارروائی کے متعلق کوئی سوال ہے؟
             </label>
             <div className="flex items-center gap-2">
@@ -322,7 +322,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
                 value={customQuestion}
                 onChange={(e) => setCustomQuestion(e.target.value)}
                 placeholder="مثلاً: اگر ایس ایچ او درخواست وصول کرنے سے انکار کر دے تو کیا کریں؟"
-                className="flex-1 bg-[#FAF9F6] border border-black/10 focus:border-[#8B735B] rounded-lg py-2 px-3 text-xs text-[#1C1C1C] font-urdu placeholder:text-stone-400 focus:outline-none"
+                className="flex-1 bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-lg py-2 px-3 text-xs text-gray-900 font-urdu placeholder:text-gray-400 focus:outline-none transition-colors"
               />
               <button
                 type="button"
@@ -332,7 +332,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
                     setCustomQuestion("");
                   }
                 }}
-                className="px-4 py-2 rounded-lg bg-[#8B735B] hover:bg-[#735F4B] text-white font-semibold text-xs font-urdu shadow-sm transition-colors whitespace-nowrap"
+                className="px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs font-urdu shadow-sm transition-all hover:-translate-y-0.5 whitespace-nowrap"
               >
                 سوال پوچھیں
               </button>

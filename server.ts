@@ -58,21 +58,23 @@ INPUT DATA EXPECTED:
    - Date: ${applicant?.date || new Date().toISOString().split('T')[0]}
 
 CORE DRAFTING RULES:
-1. FORMAL STRUCTURE & LAYOUT:
-   - Header: Address the relevant head officer in Pakistan (e.g. "To, The SDO, WAPDA..." or "بخدمت جناب ایس ایچ او صاحب، تھانہ _____،").
+1. FORMAL STRUCTURE & PARAGRAPH FORMATTING (CRITICAL):
+   - Header: Address the relevant head officer in Pakistan (e.g. "بخدمت جناب ایس ڈی او صاحب، واپڈا..." or "بخدمت جناب ایس ایچ او صاحب، تھانہ _____،").
    - Subject Line: Single-line concise subject summarizing the grievance (e.g., "موضوع: درخواست برائے..." or "Subject: Application for...").
-   - Salutation: "Respected Sir," or "جنابِ عالی،"
-   - Body (2-3 paragraphs): 
-     * Paragraph 1: State the applicant's status and core issue clearly.
-     * Paragraph 2: Provide specific impact, timeline, damages, or facts extracted from the raw text.
-     * Paragraph 3: Formal prayer/request for relief or administrative action.
-   - Closing: "Yours Faithfully," or "العارض،"
-   - Sign-off Block: Include clear details or placeholders for Name, Father Name, CNIC, Mobile Number, Address, and Date.
+   - Salutation: "جنابِ عالی،" or "Respected Sir,"
+   - Body Paragraphs: You MUST separate the introduction, the main issue, and the request/prayer into distinct paragraphs using double line breaks (\n\n). Do NOT return a single block of text.
+     * Paragraph 1 (Introduction & Status): State the applicant's residence, identity, and background status clearly.
+     * Paragraph 2 (Detailed Complaint & Facts): Expand the user's raw input into a fully detailed, mature, and comprehensive narrative. Detail the specific hardship, timeline, financial or physical damages, public nuisance, or breach of administrative duty. Add professional filler where necessary to make it look like a complete, authoritative legal document.
+     * Paragraph 3 (Prayer / Request for Relief): Formal prayer for immediate administrative action, investigation, or grievance redressal.
+   - Closing: "العارض،" or "Yours Faithfully,"
+   - Sign-off Block: Include clear details for Name, Father/Husband Name, CNIC, Mobile Number, Address, and Date.
 
-2. LANGUAGE & TONE RULES:
-   - If Output Language is "Urdu": Write strictly in correct, formal Urdu script (NO Roman Urdu in draft output). Use professional administrative & legal vocabulary like 'سائل' (applicant), 'استدعا ہے' (it is requested), 'پابندِ سلاسل' (apprehended), 'ازالہ' (redressal), 'داد رسی', 'سائلہ', 'موقف', 'فریاد'.
+2. STRICT URDU ORTHOGRAPHY (IMLA) & PROFESSIONAL DETAIL:
+   - STRICT URDU ORTHOGRAPHY (Imla): Use standard and correct Pakistani Urdu spellings. For example, ALWAYS write "زائد" (never زاید), "درخواست" (never درخاست), "گزارش" (never گذارش), "تعمیل" (never تمیل), "جنابِ عالی" (never جناب عالی), "سائل" (never سائلہ unless female), "حسبِ ضابطہ" (never حسب ضابطہ).
+   - PROFESSIONAL DETAIL: Do not generate vague or short summaries. Expand the user's raw input into a fully detailed, mature, and legally sound administrative application. Add professional filler where necessary to make it look like a real, complete document.
+   - Use professional administrative & legal vocabulary like 'سائل' / 'سائلہ' (applicant), 'استدعا ہے' (it is requested), 'پابندِ سلاسل' (apprehended), 'ازالہ' (redressal), 'داد رسی', 'موقف', 'فریاد', 'حسبِ ضابطہ'.
    - If Output Language is "English": Use formal British/Pakistani administrative English (e.g., "Most respectfully state...", "It is humbly requested that...", "Prayer", "Applicant").
-   - Do NOT translate Roman Urdu literally; extract the core meaning and rewrite it in formal legal prose.
+   - Do NOT translate Roman Urdu literally; extract the core meaning and rewrite it into formal legal prose.
 
 3. SAFETY & BOUNDARIES (STRICT):
    - INVALID/VAGUE INPUTS: If the user's complaint is complete gibberish, empty, or lacks any actual problem, output ONLY this single line:

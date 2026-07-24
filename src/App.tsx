@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 import { DepartmentSelector } from "./components/DepartmentSelector";
 import { ApplicantForm } from "./components/ApplicantForm";
 import { ComplaintInput } from "./components/ComplaintInput";
@@ -218,50 +219,56 @@ export default function App() {
     : false;
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#1C1C1C] flex flex-col font-urdu selection:bg-[#8B735B] selection:text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900 flex font-sans selection:bg-emerald-500 selection:text-white">
       
-      {/* Top Bar Navigation */}
-      <Header
+      <Sidebar 
         onOpenHistory={() => setIsHistoryOpen(true)}
         historyCount={savedDrafts.length}
-        onOpenGuide={() => setIsGuideOpen(true)}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-8 space-y-8">
-        
-        {/* Editorial Hero Banner */}
-        <section className="bg-white border border-black/10 rounded-xl p-6 sm:p-8 relative overflow-hidden shadow-sm no-print">
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF9F6] text-[#8B735B] border border-black/5 text-xs font-semibold font-sans">
-                <Scale className="w-3.5 h-3.5 text-[#8B735B]" />
-                <span className="text-[10px] uppercase tracking-widest font-bold">Editorial Legal & Administrative Suite</span>
-              </div>
-              <h1 className="text-xl sm:text-2xl font-serif font-bold italic tracking-tight text-[#1C1C1C]">
-                عریضہ نویس — غیر باضابطہ شکایات کو باضابطہ قانونی درخواستوں میں تبدیل کریں
-              </h1>
-              <p className="text-xs sm:text-sm text-[#1C1C1C]/70 font-urdu max-w-2xl leading-relaxed">
-                رومن اردو، سلیس اردو یا انگریزی میں اپنا مسئلہ درج کریں۔ نظام آپ کی شکایت کو تھانہ، واپڈا، نادرا، میونسپلٹی اور دیگر تمام پاکستانی سرکاری دفاتر کی تسلیم شدہ قانونی زبان و سلیس خاکہ میں ڈھال دے گا۔
-              </p>
-            </div>
+      <div className="flex-1 flex flex-col min-w-0 md:ml-64">
+        {/* Top Bar Navigation */}
+        <Header
+          onOpenHistory={() => setIsHistoryOpen(true)}
+          historyCount={savedDrafts.length}
+          onOpenGuide={() => setIsGuideOpen(true)}
+        />
 
-            <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  setRawComplaint("");
-                  setDraftResponse(null);
-                }}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#FAF9F6] hover:bg-stone-100 text-[#1C1C1C] text-xs font-bold border border-black/10 transition-colors uppercase tracking-wider"
-                title="تمام فارم نیا کریں"
-              >
-                <RotateCcw className="w-3.5 h-3.5 text-[#8B735B]" />
-                <span>نیا فارم (Reset)</span>
-              </button>
+        {/* Main Content Area */}
+        <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24 space-y-8">
+          
+          {/* Editorial Hero Banner */}
+          <section className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl no-print">
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-semibold font-sans">
+                  <Scale className="w-4 h-4" />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Official Drafting Suite</span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-serif font-bold text-gray-900">
+                  Arzi-Navees (عریضہ نویس)
+                </h1>
+                <p className="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                  Transform informal complaints into official, legally sound applications. Select a department, provide your details, and describe your issue.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRawComplaint("");
+                    setDraftResponse(null);
+                  }}
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white hover:bg-gray-50 text-gray-700 text-sm font-bold border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md uppercase tracking-wider"
+                  title="Reset Form"
+                >
+                  <RotateCcw className="w-4 h-4 text-emerald-600" />
+                  <span>Reset Form</span>
+                </button>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
         {/* Step 1: Department Selection */}
         <section className="no-print">
@@ -316,16 +323,17 @@ export default function App() {
       </main>
 
       {/* Editorial Footer */}
-      <footer className="bg-white border-t border-black/10 py-6 mt-16 text-center text-xs text-stone-500 font-urdu no-print">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <footer className="bg-white border-t border-gray-200 py-6 mt-16 text-center text-xs text-gray-500 font-sans no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
-            عریضہ نویس (Arzi-Navees) — تمام درخواستی خاکے پاکستانی انتظامی قوانین و روایات کے مطابق ہیں
+            عریضہ نویس (Arzi-Navees) — Official Drafts for Pakistan
           </p>
-          <p className="text-[11px] text-stone-400 font-sans">
-            © {new Date().getFullYear()} Editorial Administrative Drafting Suite • Official Civil Assistance
+          <p className="text-[11px] text-gray-400 font-semibold">
+            © 2026 Arzi-Navees Official
           </p>
         </div>
       </footer>
+      </div>
 
       {/* Modals & Drawers */}
       <HistoryDrawer
