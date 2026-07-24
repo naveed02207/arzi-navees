@@ -271,12 +271,14 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
             rows={18}
-            className="w-full bg-[#FAF9F6] border border-black/10 rounded-lg p-4 font-nastaliq text-base text-[#1C1C1C] focus:outline-none leading-loose resize-y"
+            className={`w-full bg-[#FAF9F6] border border-black/10 rounded-lg p-4 text-[#1C1C1C] focus:outline-none resize-y ${
+              isUrdu ? "urdu-text" : "font-serif text-sm text-left leading-relaxed"
+            }`}
           />
         ) : (
           <div
-            className={`whitespace-pre-wrap leading-relaxed text-[#1C1C1C] selection:bg-[#8B735B]/20 ${
-              isUrdu ? "font-nastaliq text-base text-right" : "font-serif text-sm text-left"
+            className={`whitespace-pre-wrap text-[#1C1C1C] selection:bg-[#8B735B]/20 ${
+              isUrdu ? "urdu-text" : "font-serif text-sm text-left leading-relaxed"
             }`}
             style={{ direction: isUrdu ? "rtl" : "ltr" }}
           >
