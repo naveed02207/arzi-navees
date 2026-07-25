@@ -43,6 +43,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [savedDrafts, setSavedDrafts] = useState<DraftResponse[]>([]);
   const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false);
+  const [printMargin, setPrintMargin] = useState<string>("standard");
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
   const [legalAdviceModal, setLegalAdviceModal] = useState<{
     isOpen: boolean;
@@ -202,7 +203,7 @@ export default function App() {
     ? savedDrafts.some((d) => d.id === draftResponse.id)
     : false;
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 flex font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900 flex font-sans selection:bg-emerald-500 selection:text-white print:block print:bg-white">
       {" "}
       <Sidebar
         activeView={activeView}
@@ -210,7 +211,7 @@ export default function App() {
         onOpenHistory={() => setIsHistoryOpen(true)}
         historyCount={savedDrafts.length}
       />{" "}
-      <div className="flex-1 flex flex-col min-w-0 md:ml-64">
+      <div className="flex-1 flex flex-col min-w-0 md:ms-64 print:m-0 print:block">
         {" "}
         {/* Top Bar Navigation */}{" "}
         <Header
@@ -222,7 +223,7 @@ export default function App() {
         <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {" "}
           {activeView === "home" && (
-            <section className="bg-white rounded-xl shadow-md p-8 sm:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center no-print flex flex-col items-center justify-center min-h-[500px] mb-8">
+            <section className="bg-white rounded-xl shadow-md p-8 sm:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center print:hidden flex flex-col items-center justify-center min-h-[500px] mb-8">
               {" "}
               <div className="w-20 h-20 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 mb-6 shadow-sm">
                 {" "}
@@ -259,7 +260,7 @@ export default function App() {
             <>
               {" "}
               {/* Editorial Hero Banner */}{" "}
-              <section className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl no-print mb-8">
+              <section className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl print:hidden mb-8">
                 {" "}
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   {" "}
@@ -308,7 +309,7 @@ export default function App() {
                 </div>{" "}
               </section>{" "}
               {/* Step 1: Department Selection */}{" "}
-              <section className="no-print mb-8">
+              <section className="print:hidden mb-8">
                 {" "}
                 <DepartmentSelector
                   selectedDepartmentId={selectedDept.id}
@@ -317,7 +318,7 @@ export default function App() {
                 />{" "}
               </section>{" "}
               {/* Step 2: Applicant Information Form */}{" "}
-              <section className="no-print mb-8">
+              <section className="print:hidden mb-8">
                 {" "}
                 <ApplicantForm
                   applicant={applicant}
@@ -326,7 +327,7 @@ export default function App() {
                 />{" "}
               </section>{" "}
               {/* Step 3: Raw Complaint Input */}{" "}
-              <section className="no-print mb-8">
+              <section className="print:hidden mb-8">
                 {" "}
                 <ComplaintInput
                   rawComplaint={rawComplaint}
@@ -340,7 +341,7 @@ export default function App() {
               </section>{" "}
               {/* Error Notification */}{" "}
               {errorMessage && (
-                <div className="bg-rose-50 border border-rose-200 p-4 rounded-xl flex items-center gap-3 text-rose-800 text-xs sm:text-sm font-urdu no-print mb-8">
+                <div className="bg-rose-50 border border-rose-200 p-4 rounded-xl flex items-center gap-3 text-rose-800 text-xs sm:text-sm font-urdu print:hidden mb-8">
                   {" "}
                   <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />{" "}
                   <span>{errorMessage}</span>{" "}
@@ -350,6 +351,7 @@ export default function App() {
               <section id="draft-preview-section" className="mb-8">
                 {" "}
                 <DraftPreview
+                  printMargin={printMargin}
                   draftResponse={draftResponse}
                   outputLanguage={outputLanguage}
                   onSaveToHistory={handleSaveToHistory}
@@ -370,6 +372,8 @@ export default function App() {
           )}{" "}
           {activeView === "settings" && (
             <SettingsView
+              printMargin={printMargin}
+              onPrintMarginChange={setPrintMargin}
               applicant={applicant}
               onApplicantChange={handleApplicantChange}
               outputLanguage={outputLanguage}
@@ -378,7 +382,7 @@ export default function App() {
           )}{" "}
         </main>{" "}
         {/* Editorial Footer */}{" "}
-        <footer className="bg-white border-t border-gray-200 py-6 mt-16 text-center text-xs text-gray-500 font-sans no-print">
+        <footer className="bg-white border-t border-gray-200 py-6 mt-16 text-center text-xs text-gray-500 font-sans print:hidden">
           {" "}
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
             {" "}

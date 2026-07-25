@@ -1,4 +1,6 @@
-export const translations = {
+const fs = require('fs');
+
+const code = `export const translations = {
   en: {
     departments: [
       {
@@ -129,24 +131,9 @@ export const translations = {
     btn_start: "Start Drafting Application",
     nav_home: "Home",
     nav_services: "Services",
-    nav_history: "History",
-    tpl_use: "Use Template",
-    tpl_wapda_title: "WAPDA / LESCO",
-    tpl_wapda_desc: "Overbilling & Unit Correction",
-    tpl_police_title: "Police FIR",
-    tpl_police_desc: "Stolen Mobile Phone / Motorcycle",
-    tpl_municipal_title: "Municipal Committee",
-    tpl_municipal_desc: "Street Sanitation & Drainage",
-    tpl_education_title: "University",
-    tpl_education_desc: "Degree Issuance & Clearance",
-    tpl_nadra_title: "NADRA",
-    tpl_nadra_desc: "CNIC Name/Address Correction",
-    tpl_header: "Ready-to-Use Templates",
-    tpl_header_desc: "Choose from our library of standard application templates. We will auto-fill the target department and a sample raw grievance to get you started instantly.",
     nav_templates: "Templates",
     nav_settings: "Settings",
     lbl_department: "01. Target Department",
-    lbl_department_desc: "Select the relevant department or directorate for your application",
     lbl_applicant: "02. Applicant Details",
     lbl_grievance: "03. Complaint / Grievance Details",
     placeholder_name: "Applicant's Full Name",
@@ -242,7 +229,7 @@ export const translations = {
       },
       {
         id: "nadra",
-        name: "نادرا (NADRA - قومی اندراج)",
+        name": "نادرا (NADRA - قومی اندراج)",
         officerTitle: "بخدمت جناب انچارج صاحب نادرا سنٹر",
         iconName: "FileCheck2",
         badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
@@ -251,11 +238,11 @@ export const translations = {
         samples: [
           {
             title: "شناختی کارڈ پر نام کے املاء کی تصحیح",
-            description: "سائل کے شناختی کارڈ پر نام کے املاء کی غلطی درج ہو گئی ہے، تعلیمی اسناد کے مطابق نام کی درستی فرمائی جائے۔"
+            description": "سائل کے شناختی کارڈ پر نام کے املاء کی غلطی درج ہو گئی ہے، تعلیمی اسناد کے مطابق نام کی درستی فرمائی جائے۔"
           },
           {
             title: "فیملی ٹری (FRC) ریکارڈ کی درستی",
-            description: "نادرا فیملی رجسٹریشن سرٹیفکیٹ (FRC) میں سائل کے بھائی کا نام غلطی سے حذف ہو گیا ہے، فیملی ریکارڈ اپ ڈیٹ کیا جائے۔"
+            description": "نادرا فیملی رجسٹریشن سرٹیفکیٹ (FRC) میں سائل کے بھائی کا نام غلطی سے حذف ہو گیا ہے، فیملی ریکارڈ اپ ڈیٹ کیا جائے۔"
           }
         ]
       },
@@ -266,15 +253,15 @@ export const translations = {
         iconName: "GraduationCap",
         badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
         officerLabel: "افسرِ مجاز:",
-        samplesTitle: "فوری شکایت کے نمونے (Preset Samples):",
+        samplesTitle": "فوری شکایت کے نمونے (Preset Samples):",
         samples: [
           {
             title: "جامعہ کی فیس اقساط میں ادا کرنے کی درخواست",
-            description: "سائل کے والد صاحب کی مالی حالت ناگفتہ بہ ہونے کے باعث سمسٹر فیس ایک ساتھ ادا کرنا ناممکن ہے، برائے مہربانی اقساط کی اجازت دی جائے۔"
+            description": "سائل کے والد صاحب کی مالی حالت ناگفتہ بہ ہونے کے باعث سمسٹر فیس ایک ساتھ ادا کرنا ناممکن ہے، برائے مہربانی اقساط کی اجازت دی جائے۔"
           },
           {
             title: "ڈگری و سرٹیفکیٹ کی ارجنٹ تصدیق",
-            description: "سائل کو غیر ملکی ویزا کے لیے اپنی ڈگری کی ہنگامی بنیادوں پر تصدیق درکار ہے، مرحلہ جلد از جلد مکمل کیا جائے۔"
+            description": "سائل کو غیر ملکی ویزا کے لیے اپنی ڈگری کی ہنگامی بنیادوں پر تصدیق درکار ہے، مرحلہ جلد از جلد مکمل کیا جائے۔"
           }
         ]
       },
@@ -289,11 +276,11 @@ export const translations = {
         samples: [
           {
             title: "گراں فروشی و ذخیرہ اندوزی کا ازالہ",
-            description: "مقامی مارکیٹ میں دکاندار سرکاری ریٹ لسٹ کی خلاف ورزی کرتے ہوئے گراں فروشی کر رہے ہیں، سخت انتظامی کارروائی کی جائے۔"
+            description": "مقامی مارکیٹ میں دکاندار سرکاری ریٹ لسٹ کی خلاف ورزی کرتے ہوئے گراں فروشی کر رہے ہیں، سخت انتظامی کارروائی کی جائے۔"
           },
           {
             title: "سرکاری محکمے کی عدم توجہی / تاخیر کا ازالہ",
-            description: "سائل کا قانونی کیس بلا جواز دو ماہ سے روکا گیا ہے، داد رسی فرما کر ذمہ داران سے جواب طلبی کی جائے۔"
+            description": "سائل کا قانونی کیس بلا جواز دو ماہ سے روکا گیا ہے، داد رسی فرما کر ذمہ داران سے جواب طلبی کی جائے۔"
           }
         ]
       }
@@ -303,24 +290,9 @@ export const translations = {
     btn_start: "درخواست لکھنا شروع کریں",
     nav_home: "مرکزی صفحہ",
     nav_services: "خدمات",
-    nav_history: "تاریخچہ",
-    tpl_use: "ٹیمپلیٹ استعمال کریں",
-    tpl_wapda_title: "واپڈا / لیسکو",
-    tpl_wapda_desc: "اوور بلنگ اور یونٹ کی تصحیح",
-    tpl_police_title: "پولیس ایف آئی آر",
-    tpl_police_desc: "موبائل فون یا موٹر سائیکل چوری",
-    tpl_municipal_title: "بلدیاتی کمیٹی",
-    tpl_municipal_desc: "گلی کی صفائی اور ڈرینیج",
-    tpl_education_title: "یونیورسٹی / تعلیمی بورڈ",
-    tpl_education_desc: "ڈگری کا اجراء اور کلیئرنس",
-    tpl_nadra_title: "نادرا",
-    tpl_nadra_desc: "شناختی کارڈ میں نام/پتہ کی درستی",
-    tpl_header: "تیار شدہ ٹیمپلیٹس",
-    tpl_header_desc: "ہماری معیاری درخواستوں کی لائبریری سے انتخاب کریں۔ ہم متعلقہ محکمہ اور شکایت کا نمونہ خود بخود بھر دیں گے تاکہ آپ فوراً شروعات کر سکیں۔",
     nav_templates: "نمونے",
     nav_settings: "ترتیبات",
     lbl_department: "01. محکمہ / شعبہ",
-    lbl_department_desc: "اپنی درخواست کے لیے متعلقہ محکمہ یا نظامت منتخب کریں",
     lbl_applicant: "02. سائل / درخواست دہندہ کے کوائف",
     lbl_grievance: "03. شکایت / واقعہ کی خام تفصیلات",
     placeholder_name: "سائل کا مکمل نام",
@@ -477,24 +449,9 @@ export const translations = {
     btn_start: "Darkhwast Likhna Shuru Karein",
     nav_home: "Home",
     nav_services: "Khidmat",
-    nav_history: "Tareekh",
-    tpl_use: "Template Istemal Karein",
-    tpl_wapda_title: "WAPDA / LESCO",
-    tpl_wapda_desc: "Overbilling Aur Unit Theek Karwana",
-    tpl_police_title: "Police FIR",
-    tpl_police_desc: "Chori Shuda Mobile / Motorcycle",
-    tpl_municipal_title: "Municipal Committee",
-    tpl_municipal_desc: "Gali Ki Safai Aur Gutter",
-    tpl_education_title: "University / Board",
-    tpl_education_desc: "Degree Issue Aur Clearance",
-    tpl_nadra_title: "NADRA",
-    tpl_nadra_desc: "CNIC Par Naam/Address Theek Karwana",
-    tpl_header: "Tayyar Shuda Templates",
-    tpl_header_desc: "Hamari library se standard application templates chunein. Hum mutaliqa mehkama aur shikayat ka namuna khud bhar denge taake aap fauran shuru kar sakein.",
     nav_templates: "Namoonay",
     nav_settings: "Tarteebaat",
     lbl_department: "01. Target Department (Mehkama)",
-    lbl_department_desc: "Apni darkhwast ke liye mutaliqa mehkama muntakhib karein",
     lbl_applicant: "02. Saail Ke Kawaif",
     lbl_grievance: "03. Shikayat Ki Tafseel",
     placeholder_name: "Saail Ka Mukammal Naam",
@@ -525,3 +482,7 @@ export const translations = {
 
 export type Language = 'en' | 'ur' | 'roman';
 export type TranslationKey = keyof typeof translations.en;
+`;
+
+fs.writeFileSync('src/translations.ts', code);
+console.log("Translations completely rewritten.");

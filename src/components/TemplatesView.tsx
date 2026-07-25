@@ -10,20 +10,24 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { ViewState } from "./Sidebar";
+import { TranslationKey } from "../translations";
+
 interface TemplatesViewProps {
   setActiveView: (view: ViewState) => void;
   onSelectTemplate: (department: Department, sampleRoman: string) => void;
 }
+
 export const TemplatesView: React.FC<TemplatesViewProps> = ({
   setActiveView,
   onSelectTemplate,
 }) => {
   const { t, getTextClass } = useLanguage();
+
   const templates = [
     {
       id: "wapda",
-      title: "WAPDA / LESCO",
-      desc: "Overbilling & Unit Correction",
+      titleKey: "tpl_wapda_title" as TranslationKey,
+      descKey: "tpl_wapda_desc" as TranslationKey,
       icon: Zap,
       deptId: "wapda",
       sample:
@@ -31,8 +35,8 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
     },
     {
       id: "police",
-      title: "Police FIR",
-      desc: "Stolen Mobile Phone / Motorcycle",
+      titleKey: "tpl_police_title" as TranslationKey,
+      descKey: "tpl_police_desc" as TranslationKey,
       icon: ShieldAlert,
       deptId: "police",
       sample:
@@ -40,8 +44,8 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
     },
     {
       id: "municipal",
-      title: "Municipal Committee",
-      desc: "Street Sanitation & Drainage",
+      titleKey: "tpl_municipal_title" as TranslationKey,
+      descKey: "tpl_municipal_desc" as TranslationKey,
       icon: Trash2,
       deptId: "municipal",
       sample:
@@ -49,8 +53,8 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
     },
     {
       id: "education",
-      title: "University",
-      desc: "Degree Issuance & Clearance",
+      titleKey: "tpl_education_title" as TranslationKey,
+      descKey: "tpl_education_desc" as TranslationKey,
       icon: GraduationCap,
       deptId: "education",
       sample:
@@ -58,14 +62,15 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
     },
     {
       id: "nadra",
-      title: "NADRA",
-      desc: "CNIC Name/Address Correction",
+      titleKey: "tpl_nadra_title" as TranslationKey,
+      descKey: "tpl_nadra_desc" as TranslationKey,
       icon: CreditCard,
       deptId: "nadra",
       sample:
         "Mera CNIC par naam ki spelling ghalat print ho gai hai, isko theek kia jaye.",
     },
   ];
+
   const handleUseTemplate = (template: any) => {
     const dept = DEPARTMENTS.find((d) => d.id === template.deptId);
     if (dept) {
@@ -73,74 +78,54 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
       setActiveView("services");
     }
   };
+
   return (
     <div className="bg-transparent space-y-6">
-      {" "}
       <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
-        {" "}
         <h2
           className={getTextClass(
             "text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-2",
           )}
         >
-          {" "}
-          Ready-to-Use Templates{" "}
-        </h2>{" "}
+          {t("tpl_header")}
+        </h2>
         <p
           className={getTextClass(
             "text-gray-500 mb-8 max-w-2xl text-base leading-relaxed",
           )}
         >
-          {" "}
-          Choose from our library of standard application templates. We will
-          auto-fill the target department and a sample raw grievance to get you
-          started instantly.{" "}
-        </p>{" "}
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
-          {" "}
+          {t("tpl_header_desc")}
+        </p>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
           {templates.map((tpl) => (
             <div
               key={tpl.id}
-              className="bg-white border border-gray-200 shadow-sm rounded-xl h-full flex flex-col justify-center p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group"
+              className="bg-white border border-gray-200 shadow-sm rounded-xl h-full flex flex-col items-center justify-center gap-2 p-6 text-center transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group"
             >
-              {" "}
-              <div className="flex items-center gap-4 mb-4">
-                {" "}
-                <div className="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
-                  {" "}
-                  <tpl.icon className="w-6 h-6" />{" "}
-                </div>{" "}
-                <div>
-                  {" "}
-                  <h3
-                    className={getTextClass(
-                      "font-bold text-gray-900 text-xl group-hover:text-emerald-700 transition-colors",
-                    )}
-                  >
-                    {" "}
-                    {tpl.title}{" "}
-                  </h3>{" "}
-                  <p className={getTextClass("text-base text-gray-600 mt-1")}>
-                    {" "}
-                    {tpl.desc}{" "}
-                  </p>{" "}
-                </div>{" "}
-              </div>{" "}
-              <div className="mt-auto pt-4 border-t border-gray-100">
-                {" "}
-                <button
-                  onClick={() => handleUseTemplate(tpl)}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-emerald-50 text-emerald-700 font-bold text-base hover:bg-emerald-600 hover:text-white transition-colors"
-                >
-                  {" "}
-                  <span className={getTextClass("")}>Use Template</span>{" "}
-                  <ArrowRight className="w-5 h-5" />{" "}
-                </button>{" "}
-              </div>{" "}
+              <div className="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mb-2">
+                <tpl.icon className="w-6 h-6" />
+              </div>
+              <h3
+                className={getTextClass(
+                  "font-bold text-gray-900 text-xl group-hover:text-emerald-700 transition-colors",
+                )}
+              >
+                {t(tpl.titleKey)}
+              </h3>
+              <p className={getTextClass("text-base text-gray-600")}>
+                {t(tpl.descKey)}
+              </p>
+              <button
+                onClick={() => handleUseTemplate(tpl)}
+                className="w-full flex items-center justify-center gap-2 py-3 mt-4 rounded-lg bg-emerald-50 text-emerald-700 font-bold text-base hover:bg-emerald-600 hover:text-white transition-colors"
+              >
+                <span className={getTextClass("")}>{t("tpl_use")}</span>
+                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
+              </button>
             </div>
-          ))}{" "}
-        </div>{" "}
-      </div>{" "}
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -61,7 +61,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
         </label>{" "}
         <p className={getTextClass("text-base text-gray-500 mt-1")}>
           {" "}
-          Select the relevant department or directorate for your
+          {t("lbl_department_desc")}
           application{" "}
         </p>{" "}
       </div>{" "}
@@ -77,7 +77,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
               key={dept.id}
               type="button"
               onClick={() => onSelectDepartment(dept)}
-              className={`relative h-full flex flex-col justify-center p-6 rounded-xl text-left transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group ${isSelected ? "bg-gradient-to-r from-emerald-500 to-teal-500 border-transparent shadow-md" : "bg-white border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300"}`}
+              className={`relative h-full flex flex-col justify-center p-6 rounded-xl text-start transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group ${isSelected ? "bg-gradient-to-r from-emerald-500 to-teal-500 border-transparent shadow-md" : "bg-white border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300"}`}
             >
               {" "}
               {isSelected && (
