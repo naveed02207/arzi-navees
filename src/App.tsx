@@ -8,6 +8,8 @@ import { DraftPreview } from "./components/DraftPreview";
 import { HistoryDrawer } from "./components/HistoryDrawer";
 import { GuideModal } from "./components/GuideModal";
 import { LegalAdviceModal } from "./components/LegalAdviceModal";
+import { TemplatesView } from "./components/TemplatesView";
+import { SettingsView } from "./components/SettingsView";
 import { DEPARTMENTS, Department } from "./data/departments";
 import { ApplicantDetails, DraftResponse, OutputLanguage } from "./types";
 import { AlertCircle, Scale, RotateCcw, FileText, Settings } from "lucide-react";
@@ -350,14 +352,23 @@ export default function App() {
             </>
           )}
 
-          {(activeView === 'templates' || activeView === 'settings') && (
-            <section className="bg-white dark:bg-gray-900 rounded-xl shadow-md p-8 sm:p-12 relative overflow-hidden flex flex-col items-center justify-center min-h-[400px] mb-8">
-               <div className="w-16 h-16 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center text-gray-400 dark:text-gray-500 mb-4 shadow-sm">
-                 {activeView === 'templates' ? <FileText className="w-8 h-8" /> : <Settings className="w-8 h-8" />}
-               </div>
-               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Feature Coming Soon</h2>
-               <p className="text-gray-500 dark:text-gray-400">We are working hard to bring you this feature. Stay tuned!</p>
-            </section>
+          {activeView === 'templates' && (
+            <TemplatesView 
+              setActiveView={setActiveView}
+              onSelectTemplate={(dept, sample) => {
+                setSelectedDept(dept);
+                setRawComplaint(sample);
+              }}
+            />
+          )}
+
+          {activeView === 'settings' && (
+            <SettingsView 
+              applicant={applicant}
+              onApplicantChange={handleApplicantChange}
+              outputLanguage={outputLanguage}
+              onOutputLanguageChange={setOutputLanguage}
+            />
           )}
 
         </main>
