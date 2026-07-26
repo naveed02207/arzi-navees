@@ -47,7 +47,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
     translatedDepts.find((d: any) => d.id === selectedDepartmentId) ||
     translatedDepts[0];
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 transition-all duration-300 border border-gray-100">
+    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 border border-gray-100">
       {" "}
       <div className="mb-6">
         {" "}
@@ -66,7 +66,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = ({
         </p>{" "}
       </div>{" "}
       {/* Grid of Department Cards */}{" "}
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {" "}
         {translatedDepts.map((tDept: any) => {
           const dept =

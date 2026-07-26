@@ -52,6 +52,7 @@ export default function App() {
     isLoading: boolean;
   }>({ isOpen: false, question: "", answer: "", isLoading: false });
   const [activeView, setActiveView] = useState<ViewState>("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -206,15 +207,19 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 text-gray-900 flex font-sans selection:bg-emerald-500 selection:text-white print:block print:bg-white">
       {" "}
       <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeView={activeView}
         setActiveView={setActiveView}
         onOpenHistory={() => setIsHistoryOpen(true)}
         historyCount={savedDrafts.length}
       />{" "}
-      <div className="flex-1 flex flex-col min-w-0 md:ms-64 print:m-0 print:block">
+      <div className="flex-1 flex flex-col min-w-0 lg:ms-64 overflow-x-hidden print:m-0 print:block">
         {" "}
         {/* Top Bar Navigation */}{" "}
         <Header
+          isSidebarOpen={isSidebarOpen}
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           onOpenHistory={() => setIsHistoryOpen(true)}
           historyCount={savedDrafts.length}
           onOpenGuide={() => setIsGuideOpen(true)}
@@ -223,7 +228,7 @@ export default function App() {
         <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {" "}
           {activeView === "home" && (
-            <section className="bg-white rounded-xl shadow-md p-8 sm:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center print:hidden flex flex-col items-center justify-center min-h-[500px] mb-8">
+            <section className="bg-white rounded-xl shadow-md p-4 sm:p-8 md:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center print:hidden flex flex-col items-center justify-center min-h-[500px] mb-8">
               {" "}
               <div className="w-20 h-20 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 mb-6 shadow-sm">
                 {" "}
@@ -231,7 +236,7 @@ export default function App() {
               </div>{" "}
               <h1
                 className={getTextClass(
-                  "text-3xl sm:text-5xl font-serif font-bold text-gray-900 mb-4",
+                  "text-2xl sm:text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4",
                 )}
               >
                 {" "}
@@ -260,7 +265,7 @@ export default function App() {
             <>
               {" "}
               {/* Editorial Hero Banner */}{" "}
-              <section className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl print:hidden mb-8">
+              <section className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl print:hidden mb-8">
                 {" "}
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   {" "}
@@ -275,7 +280,7 @@ export default function App() {
                     </div>{" "}
                     <h1
                       className={getTextClass(
-                        "text-2xl sm:text-3xl font-serif font-bold text-gray-900 ",
+                        "text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-gray-900 ",
                       )}
                     >
                       {" "}

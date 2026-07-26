@@ -81,10 +81,10 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
 
   return (
     <div className="bg-transparent space-y-6">
-      <div className="bg-white rounded-xl shadow-md p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+      <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 relative overflow-hidden transition-all duration-300">
         <h2
           className={getTextClass(
-            "text-2xl sm:text-3xl font-serif font-bold text-gray-900 mb-2",
+            "text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-gray-900 mb-2",
           )}
         >
           {t("tpl_header")}
@@ -96,7 +96,7 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
         >
           {t("tpl_header_desc")}
         </p>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {templates.map((tpl) => (
             <div
               key={tpl.id}

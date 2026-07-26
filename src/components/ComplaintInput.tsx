@@ -68,7 +68,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
     }
   };
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 sm:p-6 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       {" "}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         {" "}
