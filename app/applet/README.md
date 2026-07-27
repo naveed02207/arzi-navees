@@ -8,8 +8,11 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC.svg)](https://tailwindcss.com/)
 [![Gemini API](https://img.shields.io/badge/AI-Google_Gemini-orange.svg)](https://ai.google.dev/)
 
-**Live Demo:** [https://arzinaves.ai.studio](https://arzinaves.ai.studio)  
-**GitHub Repository:** [Placeholder for GitHub URL]
+## 🌐 Live Demo
+
+**Live Application:** https://arzinaves.ai.studio
+
+**GitHub Repository:** https://github.com/<YOUR_GITHUB_USERNAME>/<YOUR_REPOSITORY_NAME>
 
 ---
 
