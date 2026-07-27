@@ -54,7 +54,7 @@ https://arzinaves.ai.studio
 
 
 
-https://github.com/YOUR_USERNAME/arzi-navees
+https://github.com/naveed02207/arzi-navees
 
 
 
