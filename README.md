@@ -494,48 +494,27 @@ These improvements ensure smooth performance across desktop and mobile devices.
 
 # 📸 Screenshots
 
-> **Note:** Replace the placeholder images below with actual screenshots of your application before submission.
-
 ## 🏠 Home Page
 
-The landing page introduces Arzi-Navees and provides quick access to the application drafting workflow.
+The landing page introduces Arzi-Navees and allows users to start drafting official Government applications.
 
-![Home](README-assets/home.png)
-
----
-
-## 🏛 Services & Department Selection
-
-Users can select the appropriate Government department before generating their application.
-
-![Services](README-assets/services.png)
+![Home Page](README-assets/1.png)
 
 ---
 
-## 📝 Applicant Information Form
+## 🏛 Templates Library
 
-Users provide their personal details required for the official application.
+Ready-to-use templates help users quickly generate applications for common Government services such as Police, WAPDA, NADRA, Universities, and Municipal Committees.
 
-![Applicant Form](README-assets/complaint-form.png)
-
----
-
-## 🤖 AI Generated Government Application
-
-Google Gemini AI transforms the user's complaint into a professionally formatted Government application.
-
-![Generated Draft](README-assets/generated-draft.png)
+![Templates](README-assets/2.png)
 
 ---
 
-## 🖨️ Print Preview
+## 🤖 AI-Generated Official Application
 
-Professionally formatted A4 document ready for printing or PDF export.
+Google Gemini AI converts informal complaints written in English, Urdu, or Roman Urdu into professionally formatted Government applications ready for printing and submission.
 
-![Print Preview](README-assets/print-preview.png)
-
----
-
+![Generated Application](README-assets/3.png)
 ## 📂 Templates
 
 Pre-built complaint templates help users generate applications more quickly.
