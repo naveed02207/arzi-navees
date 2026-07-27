@@ -31,7 +31,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
   const handleSaveProfile = () => {
     onApplicantChange(profile);
-    setSaveStatus(t("settings_saved"));
+    setSaveStatus(t("settings_save_success"));
     setTimeout(() => setSaveStatus(null), 3000);
   };
 

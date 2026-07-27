@@ -11,14 +11,14 @@ interface ComplaintInputProps {
   isLoading: boolean;
   departmentName: string;
 }
-export const ComplaintInput: React.FC<ComplaintInputProps> = ({
+export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
   rawComplaint,
   onComplaintChange,
   outputLanguage,
   onLanguageChange,
   onSubmitDraft,
   isLoading,
-  departmentName,
+  departmentName: _departmentName,
 }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const { t, getTextClass } = useLanguage();
@@ -199,4 +199,4 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = ({
       </div>{" "}
     </div>
   );
-};
+});

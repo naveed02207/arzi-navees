@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy, useCallback } from "react";
 import { Header } from "./components/Header";
 import { Sidebar, ViewState } from "./components/Sidebar";
 import { DepartmentSelector } from "./components/DepartmentSelector";
 import { ApplicantForm } from "./components/ApplicantForm";
 import { ComplaintInput } from "./components/ComplaintInput";
 import { DraftPreview } from "./components/DraftPreview";
-import { HistoryDrawer } from "./components/HistoryDrawer";
-import { GuideModal } from "./components/GuideModal";
-import { LegalAdviceModal } from "./components/LegalAdviceModal";
-import { TemplatesView } from "./components/TemplatesView";
-import { SettingsView } from "./components/SettingsView";
 import { DEPARTMENTS, Department } from "./data/departments";
 import { ApplicantDetails, DraftResponse, OutputLanguage } from "./types";
 import {
   AlertCircle,
   Scale,
   RotateCcw,
-  FileText,
-  Settings,
+ 
+ 
 } from "lucide-react";
 import { useLanguage } from "./contexts/LanguageContext";
+const HistoryDrawer = lazy(() => import("./components/HistoryDrawer").then(m => ({ default: m.HistoryDrawer })));
+const GuideModal = lazy(() => import("./components/GuideModal").then(m => ({ default: m.GuideModal })));
+const LegalAdviceModal = lazy(() => import("./components/LegalAdviceModal").then(m => ({ default: m.LegalAdviceModal })));
+const TemplatesView = lazy(() => import("./components/TemplatesView").then(m => ({ default: m.TemplatesView })));
+const SettingsView = lazy(() => import("./components/SettingsView").then(m => ({ default: m.SettingsView })));
 const STORAGE_KEY = "arzi_navees_saved_drafts";
 const APPLICANT_STORAGE_KEY = "arzi_navees_applicant_details";
 export default function App() {
@@ -72,23 +72,20 @@ export default function App() {
       console.error("Failed to load state from localStorage", e);
     }
   }, []);
-  const handleApplicantChange = (updated: ApplicantDetails) => {
+  const handleApplicantChange = useCallback((updated: ApplicantDetails) => {
     setApplicant(updated);
     try {
       localStorage.setItem(APPLICANT_STORAGE_KEY, JSON.stringify(updated));
     } catch (e) {
       console.error("Failed to save applicant details to localStorage", e);
     }
-  };
-  const handleSelectDepartment = (dept: Department) => {
+  }, []);
+  const handleSelectDepartment = useCallback((dept: Department) => {
     setSelectedDept(dept);
-  };
-  const handleSelectSamplePrompt = (
-    sampleText: string,
-    sampleTitle: string,
-  ) => {
+  }, []);
+  const handleSelectSamplePrompt = useCallback((sampleText: string, _sampleTitle: string) => {
     setRawComplaint(sampleText);
-  };
+  }, []);
   const handleDraftSubmit = async () => {
     if (!rawComplaint.trim()) return;
     setIsLoading(true);
@@ -376,14 +373,14 @@ export default function App() {
             />
           )}{" "}
           {activeView === "settings" && (
-            <SettingsView
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><SettingsView
               printMargin={printMargin}
               onPrintMarginChange={setPrintMargin}
               applicant={applicant}
               onApplicantChange={handleApplicantChange}
               outputLanguage={outputLanguage}
               onOutputLanguageChange={setOutputLanguage}
-            />
+            /></Suspense>
           )}{" "}
         </main>{" "}
         {/* Editorial Footer */}{" "}
@@ -402,7 +399,7 @@ export default function App() {
           </div>{" "}
         </footer>{" "}
       </div>{" "}
-      {/* Modals & Drawers */}{" "}
+      {/* Modals & Drawers */}{" "}<Suspense fallback={null}>
       <HistoryDrawer
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
@@ -427,7 +424,7 @@ export default function App() {
         question={legalAdviceModal.question}
         answer={legalAdviceModal.answer}
         isLoading={legalAdviceModal.isLoading}
-      />{" "}
+      />{" "}</Suspense>
     </div>
   );
 }

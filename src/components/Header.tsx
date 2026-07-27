@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleSidebar,
   isSidebarOpen,
 }) => {
-  const { uiLanguage, setUiLanguage, t, getTextClass } = useLanguage();
+  const { uiLanguage, setUiLanguage, getTextClass } = useLanguage();
 
   return (
     <header className="fixed top-0 inset-x-0 z-40 bg-gradient-to-br from-emerald-800 via-emerald-700 to-teal-700 border-b border-emerald-900 print:hidden shadow-sm h-16">

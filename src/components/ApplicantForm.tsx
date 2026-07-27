@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { ApplicantDetails } from "../types";
 import {
-  User,
-  Phone,
-  CreditCard,
-  MapPin,
+ 
+ 
+ 
+ 
   ChevronDown,
   ChevronUp,
-  UserCheck,
+ 
   Save,
-  RefreshCw,
+ 
   Trash2,
 } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -18,7 +18,7 @@ interface ApplicantFormProps {
   onChange: (updated: ApplicantDetails) => void;
   outputLanguage: "Urdu" | "English";
 }
-export const ApplicantForm: React.FC<ApplicantFormProps> = ({
+export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
   applicant,
   onChange,
   outputLanguage,
@@ -310,4 +310,4 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = ({
       )}{" "}
     </div>
   );
-};
+});

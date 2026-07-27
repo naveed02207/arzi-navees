@@ -22,15 +22,15 @@ interface DraftPreviewProps {
   printMargin: string;
 }
 
-export const DraftPreview: React.FC<DraftPreviewProps> = ({
+export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
   draftResponse,
-  outputLanguage,
+  outputLanguage: _outputLanguage,
   onSaveToHistory,
   isSaved,
   onAskLegalQuestion,
   printMargin,
 }) => {
-  const { t, getTextClass } = useLanguage();
+  const { getTextClass } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState("");
@@ -39,7 +39,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
   if (!draftResponse) return null;
 
   const isUrdu = draftResponse.request.outputLanguage === "Urdu";
-  const currentText = isEditing ? editedText : draftResponse.draft;
+  const currentText = isEditing ? editedText : draftResponse.applicationText;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(currentText);
@@ -88,10 +88,10 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
             type="button"
             onClick={() => {
               if (isEditing) {
-                draftResponse.draft = editedText;
+                draftResponse.applicationText = editedText;
                 setIsEditing(false);
               } else {
-                setEditedText(draftResponse.draft);
+                setEditedText(draftResponse.applicationText);
                 setIsEditing(true);
               }
             }}
@@ -291,4 +291,4 @@ export const DraftPreview: React.FC<DraftPreviewProps> = ({
       )}
     </div>
   );
-};
+});

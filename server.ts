@@ -138,7 +138,7 @@ Generate a response as JSON with two fields:
     console.error("Error drafting application:", error);
     res.status(500).json({
       error: "Failed to draft application. Please check your network or API key configuration.",
-      details: error.message
+      details: "An internal server error occurred."
     });
   }
 });
@@ -159,7 +159,7 @@ app.post("/api/legal-advice", async (req, res) => {
 
     res.json({ success: true, answer: response.text });
   } catch (error: any) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: "An unexpected error occurred while processing your request." });
   }
 });
 
@@ -173,7 +173,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", (req, res) => {
+    app.get("*", (_req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
