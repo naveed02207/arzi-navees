@@ -9,6 +9,8 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        'node-fetch': path.resolve(__dirname, 'empty-module.js'),
+        'google-auth-library': path.resolve(__dirname, 'empty-module.js'),
       },
     },
     build: {

@@ -81,7 +81,7 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
 
   return (
     <div className="bg-transparent space-y-6">
-      <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 relative overflow-hidden transition-all duration-300">
+      <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 relative overflow-hidden transition-all duration-300">
         <h2
           className={getTextClass(
             "text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-gray-900 mb-2",
@@ -100,7 +100,7 @@ export const TemplatesView: React.FC<TemplatesViewProps> = ({
           {templates.map((tpl) => (
             <div
               key={tpl.id}
-              className="bg-white border border-gray-200 shadow-sm rounded-xl h-full flex flex-col items-center justify-center gap-2 p-6 text-center transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group"
+              className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 transition-all duration-300 hover:shadow-md h-full flex flex-col items-center justify-center gap-2 p-6 text-center transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group"
             >
               <div className="w-12 h-12 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mb-2">
                 <tpl.icon className="w-6 h-6" />

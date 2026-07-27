@@ -17,7 +17,6 @@ import {
 import { useLanguage } from "./contexts/LanguageContext";
 const HistoryDrawer = lazy(() => import("./components/HistoryDrawer").then(m => ({ default: m.HistoryDrawer })));
 const GuideModal = lazy(() => import("./components/GuideModal").then(m => ({ default: m.GuideModal })));
-const LegalAdviceModal = lazy(() => import("./components/LegalAdviceModal").then(m => ({ default: m.LegalAdviceModal })));
 const TemplatesView = lazy(() => import("./components/TemplatesView").then(m => ({ default: m.TemplatesView })));
 const SettingsView = lazy(() => import("./components/SettingsView").then(m => ({ default: m.SettingsView })));
 const STORAGE_KEY = "arzi_navees_saved_drafts";
@@ -45,12 +44,6 @@ export default function App() {
   const [isHistoryOpen, setIsHistoryOpen] = useState<boolean>(false);
   const [printMargin, setPrintMargin] = useState<string>("standard");
   const [isGuideOpen, setIsGuideOpen] = useState<boolean>(false);
-  const [legalAdviceModal, setLegalAdviceModal] = useState<{
-    isOpen: boolean;
-    question: string;
-    answer: string;
-    isLoading: boolean;
-  }>({ isOpen: false, question: "", answer: "", isLoading: false });
   const [activeView, setActiveView] = useState<ViewState>("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   useEffect(() => {
@@ -109,8 +102,7 @@ export default function App() {
       const newDraft: DraftResponse = {
         id: "draft_" + Date.now(),
         applicationText: data.applicationText || "",
-        legalNotes: data.legalNotes || "",
-        timestamp: new Date().toISOString(),
+                timestamp: new Date().toISOString(),
         request: {
           departmentId: selectedDept.id,
           departmentName: selectedDept.nameUrdu,
@@ -165,39 +157,7 @@ export default function App() {
     setSavedDrafts([]);
     localStorage.removeItem(STORAGE_KEY);
   };
-  const handleAskLegalQuestion = async (question: string) => {
-    setLegalAdviceModal({
-      isOpen: true,
-      question,
-      answer: "",
-      isLoading: true,
-    });
-    try {
-      const res = await fetch("/api/legal-advice", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question,
-          department: selectedDept.nameUrdu,
-          currentDraft: draftResponse?.applicationText || "",
-          language: outputLanguage,
-        }),
-      });
-      const data = await res.json();
-      setLegalAdviceModal((prev) => ({
-        ...prev,
-        answer: data.answer || "معذرت، اس وقت قانونی مشورہ حاصل نہیں ہو سکا۔",
-        isLoading: false,
-      }));
-    } catch (err) {
-      setLegalAdviceModal((prev) => ({
-        ...prev,
-        answer: "رابطے میں مسئلہ پیش آیا۔ برائے کرم بعد میں کوشش کریں۔",
-        isLoading: false,
-      }));
-    }
-  };
-  const isCurrentSaved = draftResponse
+    const isCurrentSaved = draftResponse
     ? savedDrafts.some((d) => d.id === draftResponse.id)
     : false;
   return (
@@ -225,7 +185,7 @@ export default function App() {
         <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
           {" "}
           {activeView === "home" && (
-            <section className="bg-white rounded-xl shadow-md p-4 sm:p-8 md:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center print:hidden flex flex-col items-center justify-center min-h-[500px] mb-8">
+            <section className="bg-white rounded-2xl shadow-md p-4 sm:p-8 md:p-12 relative overflow-hidden transition-all duration-300 ease-in-out text-center print:hidden flex flex-col items-center justify-center min-h-[500px] mb-8">
               {" "}
               <div className="w-20 h-20 rounded-3xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 mb-6 shadow-sm">
                 {" "}
@@ -250,7 +210,7 @@ export default function App() {
               <button
                 onClick={() => setActiveView("services")}
                 className={getTextClass(
-                  "px-8 py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg shadow-lg hover:shadow-emerald-500/50 hover:-translate-y-1 transition-all duration-300",
+                  "rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-lg px-8 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2",
                 )}
               >
                 {" "}
@@ -262,7 +222,7 @@ export default function App() {
             <>
               {" "}
               {/* Editorial Hero Banner */}{" "}
-              <section className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 relative overflow-hidden transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl print:hidden mb-8">
+              <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8 relative overflow-hidden transition-all duration-300 hover:shadow-md print:hidden mb-8">
                 {" "}
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   {" "}
@@ -300,7 +260,7 @@ export default function App() {
                         setRawComplaint("");
                         setDraftResponse(null);
                       }}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white hover:bg-gray-50 text-gray-700 text-sm font-bold border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md uppercase tracking-wider"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium border border-gray-200 px-5 py-2.5 shadow-sm hover:shadow-md transition-all duration-200 uppercase tracking-wider"
                       title={t("btn_reset")}
                     >
                       {" "}
@@ -343,7 +303,7 @@ export default function App() {
               </section>{" "}
               {/* Error Notification */}{" "}
               {errorMessage && (
-                <div className="bg-rose-50 border border-rose-200 p-4 rounded-xl flex items-center gap-3 text-rose-800 text-xs sm:text-sm font-urdu print:hidden mb-8">
+                <div className="bg-rose-50 border border-rose-200 p-4 rounded-2xl flex items-center gap-3 text-rose-800 text-xs sm:text-sm font-urdu print:hidden mb-8">
                   {" "}
                   <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />{" "}
                   <span>{errorMessage}</span>{" "}
@@ -358,9 +318,9 @@ export default function App() {
                   outputLanguage={outputLanguage}
                   onSaveToHistory={handleSaveToHistory}
                   isSaved={isCurrentSaved}
-                  onAskLegalQuestion={handleAskLegalQuestion}
-                />{" "}
-              </section>{" "}
+                  
+                />
+                              </section>{" "}
             </>
           )}{" "}
           {activeView === "templates" && (
@@ -416,15 +376,7 @@ export default function App() {
         onClearAll={handleClearAllHistory}
       />{" "}
       <GuideModal isOpen={isGuideOpen} onClose={() => setIsGuideOpen(false)} />{" "}
-      <LegalAdviceModal
-        isOpen={legalAdviceModal.isOpen}
-        onClose={() =>
-          setLegalAdviceModal((prev) => ({ ...prev, isOpen: false }))
-        }
-        question={legalAdviceModal.question}
-        answer={legalAdviceModal.answer}
-        isLoading={legalAdviceModal.isLoading}
-      />{" "}</Suspense>
+      {" "}</Suspense>
     </div>
   );
 }

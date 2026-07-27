@@ -67,7 +67,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
             savedDrafts.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#FAF9F6] p-4 rounded-xl border border-black/10 hover:border-[#8B735B] transition-colors group"
+                className="bg-[#FAF9F6] p-4 rounded-2xl border border-black/10 hover:border-[#8B735B] transition-colors group"
               >
                 {" "}
                 <div className="flex items-start justify-between">

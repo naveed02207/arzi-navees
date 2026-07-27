@@ -6,7 +6,7 @@ interface UrduApplicationViewerProps {
   UrduApplicationViewerProps
 > = ({ generatedApplication }) => {
   return (
-    <div className="bg-white border border-black/10 rounded-xl p-6 sm:p-8 shadow-sm">
+    <div className="bg-white border border-black/10 rounded-2xl p-6 sm:p-8 shadow-sm">
       {" "}
       <div className="urdu-text text-gray-900 whitespace-pre-wrap selection:bg-[#8B735B]/20">
         {" "}

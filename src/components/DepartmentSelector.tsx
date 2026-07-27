@@ -52,7 +52,7 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = React.memo(
     translatedDepts[0];
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 border border-gray-100">
+    <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 border border-gray-100">
       {" "}
       <div className="mb-6">
         {" "}
@@ -83,14 +83,14 @@ export const DepartmentSelector: React.FC<DepartmentSelectorProps> = React.memo(
               key={dept.id}
               type="button"
               onClick={() => onSelectDepartment(dept)}
-              className={`relative h-full flex flex-col justify-center p-6 rounded-xl text-start transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group ${isSelected ? "bg-gradient-to-r from-emerald-500 to-teal-500 border-transparent shadow-md" : "bg-white border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300"}`}
+              className={`relative h-full flex flex-col justify-center p-6 rounded-2xl text-start transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 group ${isSelected ? "bg-gradient-to-r from-emerald-500 to-teal-500 border-transparent shadow-md" : "bg-white border border-gray-200 shadow-sm hover:-translate-y-1 hover:shadow-xl hover:border-emerald-300"}`}
             >
               {" "}
               {isSelected && (
                 <CheckCircle2 className="absolute top-4 right-4 w-6 h-6 text-emerald-100" />
               )}{" "}
               <div
-                className={`p-3 rounded-xl mb-4 transition-transform group-hover:scale-110 w-max ${isSelected ? "bg-white/20" : "bg-emerald-50 border border-emerald-100"}`}
+                className={`p-3 rounded-2xl mb-4 transition-transform group-hover:scale-110 w-max ${isSelected ? "bg-white/20" : "bg-emerald-50 border border-emerald-100"}`}
               >
                 {" "}
                 {getIcon(dept.iconName, isSelected)}{" "}

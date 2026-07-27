@@ -18,8 +18,7 @@ interface DraftPreviewProps {
   outputLanguage: OutputLanguage;
   onSaveToHistory: (draft: DraftResponse) => void;
   isSaved: boolean;
-  onAskLegalQuestion: (question: string) => void;
-  printMargin: string;
+    printMargin: string;
 }
 
 export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
@@ -27,8 +26,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
   outputLanguage: _outputLanguage,
   onSaveToHistory,
   isSaved,
-  onAskLegalQuestion,
-  printMargin,
+    printMargin,
 }) => {
   const { t, getTextClass } = useLanguage();
   const [copied, setCopied] = useState(false);
@@ -64,7 +62,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
   return (
     <div className="space-y-6">
       {/* Action Toolbar */}
-      <div className="bg-white rounded-xl shadow-md p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden transition-all duration-300">
+      <div className="bg-white rounded-2xl shadow-md p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 print:hidden transition-all duration-300">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
             <Sparkles className="w-4 h-4 text-emerald-600" />
@@ -150,7 +148,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
           <button
             type="button"
             onClick={() => onSaveToHistory(draftResponse)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${getTextClass("")} ${isSaved ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border-gray-200"}`}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${getTextClass("")} ${isSaved ? "bg-emerald-100 text-emerald-800 border-emerald-200" : "bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border-gray-200"}`}
           >
             <Bookmark className={`w-4 h-4 ${isSaved ? "fill-emerald-600 text-emerald-600" : "text-emerald-600"}`} />
             <span>{isSaved ? t("txt_auto_saved") : t("btn_save")}</span>
@@ -186,7 +184,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
       {/* Main Printable Editorial Document Paper Canvas */}
       <div
         id="printable-document-paper"
-        className={`bg-white text-gray-900 rounded-xl border border-gray-200 p-8 sm:p-14 document-shadow legal-paper relative my-2 shadow-xl print:block print:w-full print:bg-white print:text-black print:shadow-none ${printMargin === "stamp" ? "print:pt-[150mm]" : "print:pt-8"}`}
+        className={`bg-white text-gray-900 rounded-2xl border border-gray-200 p-8 sm:p-14 document-shadow legal-paper relative my-2 shadow-xl print:block print:w-full print:bg-white print:text-black print:shadow-none ${printMargin === "stamp" ? "print:pt-[150mm]" : "print:pt-8"}`}
       >
         {/* Editorial Official Stamp Header Pattern */}
         <div className="text-center pb-6 mb-8 border-b-2 border-gray-900">
@@ -237,61 +235,6 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
       </div>
 
       {/* Supplemental Legal Notes & Attachments Checklist (Hidden on Print) */}
-      {draftResponse.legalNotes && (
-        <div className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg print:mt-10 print:shadow-none print:border-none print:p-0">
-          <div className="flex items-center gap-2 mb-3">
-            <AlertCircle className="w-5 h-5 text-emerald-600 " />
-            <h3
-              className={getTextClass(
-                "text-xs font-bold text-gray-900 uppercase tracking-wider",
-              )}
-            >
-              {t("doc_action_checklist")}
-            </h3>
-          </div>
-          <div
-            className={getTextClass(
-              "bg-gray-50 p-4 rounded-lg border border-gray-200 text-xs text-gray-800 leading-relaxed whitespace-pre-line",
-            )}
-          >
-            {draftResponse.legalNotes}
-          </div>
-
-          {/* Ask Follow-up Legal Question Input */}
-          <div className="mt-5 pt-4 border-t border-gray-100 print:hidden">
-            <label
-              className={getTextClass(
-                "block text-xs font-semibold text-gray-900 mb-1.5",
-              )}
-            >
-              {t("doc_legal_notes")}
-            </label>
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                value={customQuestion}
-                onChange={(e) => setCustomQuestion(e.target.value)}
-                placeholder={t("btn_ask_question")}
-                className={getTextClass(
-                  "flex-1 bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-lg py-2 px-3 text-xs text-gray-900 placeholder:text-gray-400 :text-gray-500 focus:outline-none transition-colors",
-                )}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (customQuestion.trim()) {
-                    onAskLegalQuestion(customQuestion);
-                    setCustomQuestion("");
-                  }
-                }}
-                className={getTextClass(
-                  "px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition-all hover:-translate-y-0.5 whitespace-nowrap",
-                )}
-              >{t("btn_ask_question")}</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 });

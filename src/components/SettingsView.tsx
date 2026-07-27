@@ -37,7 +37,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
 
   return (
     <div className="bg-transparent space-y-6">
-      <section className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
+      <section className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
         <h2 className={getTextClass("text-xl font-bold text-gray-900 mb-6 flex items-center gap-2 text-start")}>
           <User className="w-5 h-5 text-emerald-600" />
           {t("settings_autofill_title")}
@@ -117,7 +117,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
       </section>
 
-      <section className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
+      <section className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
         <h2 className={getTextClass("text-xl font-bold text-gray-900 mb-6 flex items-center gap-2 text-start")}>
           <Monitor className="w-5 h-5 text-emerald-600" />
           {t("settings_prefs_title")}
@@ -149,7 +149,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
       </section>
 
-      <section className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
+      <section className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 border border-gray-100 transition-all duration-300">
         <h2 className={getTextClass("text-xl font-bold text-gray-900 mb-6 flex items-center gap-2 text-start")}>
           <Printer className="w-5 h-5 text-emerald-600" />
           {t("settings_export_title")}

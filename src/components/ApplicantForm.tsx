@@ -67,7 +67,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
     applicant.name || applicant.cnic || applicant.phone,
   );
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       {" "}
       <div
         className="flex items-center justify-between cursor-pointer select-none"
@@ -162,7 +162,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                     : "e.g. Muhammad Ahmed Qureshi"
                 }
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
               />{" "}
             </div>{" "}
@@ -191,7 +191,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                     : "e.g. Abdul Rasheed"
                 }
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
               />{" "}
             </div>{" "}
@@ -216,7 +216,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                 onChange={handleInputChange}
                 placeholder="35202-1245890-1"
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
                 dir="ltr"
               />{" "}
@@ -242,7 +242,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                 onChange={handleInputChange}
                 placeholder="0300-4589012"
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
                 dir="ltr"
               />{" "}
@@ -272,7 +272,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                     : "House 45, Block B, Model Town"
                 }
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
               />{" "}
             </div>{" "}
@@ -301,7 +301,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
                     : "e.g. Lahore / Karachi"
                 }
                 className={getTextClass(
-                  "w-full bg-transparent border-b border-gray-300 focus:border-emerald-500 py-1.5 text-sm text-gray-900 placeholder:text-gray-400 focus:ring-0 outline-none transition-colors",
+                  "w-full bg-gray-50 border border-gray-200 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/20 transition-all duration-200",
                 )}
               />{" "}
             </div>{" "}

@@ -84,54 +84,24 @@ CORE DRAFTING RULES:
 `;
 
     // We will call Gemini 3.6 Flash using JSON mode to get both the application text and supplementary guidance
-    const prompt = `
-Raw Complaint Input:
+    const prompt = `Raw Complaint Input:
 "${rawComplaint}"
 
-Generate a response as JSON with two fields:
-1. "applicationText": The complete, pristine, formal administrative application string formatted strictly according to the system rules above.
-2. "legalNotes": A string providing concise helpful guidance in Pakistan's context (e.g. relevant laws like PPC sections, Consumer Rights Act, Ombudsman procedure, required documents/attachments list like CNIC copy, bill, affidavit, and where to submit).
-`;
+Generate the complete, pristine, formal administrative application string formatted strictly according to the system rules above. Do NOT include any markdown formatting, JSON, or additional notes. Just return the text of the application.`;
 
     const response = await ai.models.generateContent({
       model: "gemini-3.6-flash",
       contents: prompt,
       config: {
-        systemInstruction,
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.OBJECT,
-          properties: {
-            applicationText: {
-              type: Type.STRING,
-              description: "The official drafted legal application."
-            },
-            legalNotes: {
-              type: Type.STRING,
-              description: "Guidance on laws, required attachments, and submission steps in Pakistan."
-            }
-          },
-          required: ["applicationText"]
-        }
+        systemInstruction
       }
     });
 
-    const resultText = response.text || "{}";
-    let parsedResult = { applicationText: "", legalNotes: "" };
-    
-    try {
-      parsedResult = JSON.parse(resultText);
-    } catch {
-      parsedResult = {
-        applicationText: resultText,
-        legalNotes: "Please ensure all relevant supporting documents (CNIC copy, receipts, proof) are attached when submitting to the concerned department."
-      };
-    }
+    const resultText = response.text || "";
 
     res.json({
       success: true,
-      applicationText: parsedResult.applicationText,
-      legalNotes: parsedResult.legalNotes || ""
+      applicationText: resultText
     });
 
   } catch (error: any) {

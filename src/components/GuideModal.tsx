@@ -18,7 +18,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm no-print overflow-y-auto">
       {" "}
-      <div className="bg-white border border-black/10 rounded-xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl my-8 relative text-[#1C1C1C]">
+      <div className="bg-white border border-black/10 rounded-2xl w-full max-w-2xl p-6 sm:p-8 shadow-2xl my-8 relative text-[#1C1C1C]">
         {" "}
         {/* Header */}{" "}
         <div className="flex items-center justify-between pb-4 border-b border-black/10">
@@ -42,7 +42,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
         {/* Content */}{" "}
         <div className="py-4 space-y-4 text-xs sm:text-sm font-urdu leading-relaxed max-h-[70vh] overflow-y-auto pr-2">
           {" "}
-          <div className="bg-[#FAF9F6] p-4 rounded-xl border border-black/10">
+          <div className="bg-[#FAF9F6] p-4 rounded-2xl border border-black/10">
             {" "}
             <h3 className="font-bold text-[#8B735B] mb-1 flex items-center gap-1.5">
               {" "}
@@ -59,7 +59,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
               Roznamcha Number) لازمی وصول کریں۔{" "}
             </p>{" "}
           </div>{" "}
-          <div className="bg-[#FAF9F6] p-4 rounded-xl border border-black/10">
+          <div className="bg-[#FAF9F6] p-4 rounded-2xl border border-black/10">
             {" "}
             <h3 className="font-bold text-[#8B735B] mb-1 flex items-center gap-1.5">
               {" "}
@@ -76,7 +76,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
               ریجنل فورم سے رجوع کیا جا سکتا ہے۔{" "}
             </p>{" "}
           </div>{" "}
-          <div className="bg-[#FAF9F6] p-4 rounded-xl border border-black/10">
+          <div className="bg-[#FAF9F6] p-4 rounded-2xl border border-black/10">
             {" "}
             <h3 className="font-bold text-[#8B735B] mb-1 flex items-center gap-1.5">
               {" "}
@@ -91,7 +91,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
               ہے۔{" "}
             </p>{" "}
           </div>{" "}
-          <div className="bg-[#FAF9F6] p-4 rounded-xl border border-black/10">
+          <div className="bg-[#FAF9F6] p-4 rounded-2xl border border-black/10">
             {" "}
             <h3 className="font-bold text-[#8B735B] mb-1 flex items-center gap-1.5">
               {" "}

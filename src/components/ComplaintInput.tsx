@@ -68,7 +68,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
     }
   };
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 lg:p-8 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl">
       {" "}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         {" "}
@@ -121,7 +121,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
           placeholder={`مثال کے طور پر:\n"Mera bijli ka meter LESCO ne overbilling ki waja se kaat diya hai. Bill 45 hazar aya hai jabke ghar mein sirf do pankhe aur ek fridge chal raha hai. Mianwali sub-division office gaye lekin SDO sahab ne sunwai nahi ki. Kindly bill sahi kar ke meter bahal kia jaye..."`}
           rows={5}
           className={getTextClass(
-            "w-full bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-xl p-4 text-sm text-gray-900 placeholder:text-gray-400 :text-gray-500 focus:outline-none leading-relaxed resize-y transition-colors",
+            "w-full bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-2xl p-4 text-sm text-gray-900 placeholder:text-gray-400 :text-gray-500 focus:outline-none leading-relaxed resize-y transition-colors",
           )}
         />{" "}
         {/* Voice Dictation Button & Clear */}{" "}
