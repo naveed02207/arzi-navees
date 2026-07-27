@@ -84,7 +84,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
           </label>{" "}
           <p className={getTextClass("text-xs text-gray-500 mt-0.5")}>
             {" "}
-            Describe your issue here freely in any language{" "}
+            {t("txt_describe_issue")}{" "}
           </p>{" "}
         </div>{" "}
         {/* Output Language Toggle */}{" "}
@@ -92,7 +92,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
           {" "}
           <Languages className="w-4 h-4 text-emerald-600 ml-2 mr-1" />{" "}
           <span className="text-[11px] text-gray-600 ml-2 font-urdu font-medium">
-            زبان خاکہ:
+            {t("txt_output_lang_label")}
           </span>{" "}
           <button
             type="button"
@@ -139,14 +139,14 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
                 <>
                   {" "}
                   <MicOff className="w-4 h-4" />{" "}
-                  <span className="font-urdu">ریکارڈنگ جاری...</span>{" "}
+                  <span className="font-urdu">{t("txt_recording")}</span>{" "}
                 </>
               ) : (
                 <>
                   {" "}
                   <Mic className="w-4 h-4 text-emerald-600" />{" "}
                   <span className="font-urdu">
-                    بول کر لکھیں (Urdu Dictation)
+                    {t("txt_dictate")}
                   </span>{" "}
                 </>
               )}{" "}
@@ -157,7 +157,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
               type="button"
               onClick={() => onComplaintChange("")}
               className="p-1.5 rounded-lg bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-700 border border-gray-200 text-xs shadow-sm transition-colors"
-              title="متن صاف کریں"
+              title={t("btn_clear_text")}
             >
               {" "}
               <Eraser className="w-4 h-4" />{" "}
@@ -170,7 +170,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
         {" "}
         <div className="text-xs text-gray-500 font-urdu">
           {" "}
-          حروف کی تعداد:{" "}
+          {t("txt_char_count")}{" "}
           <span className="font-bold text-gray-900">
             {rawComplaint.length}
           </span>{" "}
@@ -186,7 +186,7 @@ export const ComplaintInput: React.FC<ComplaintInputProps> = React.memo(({
             <>
               {" "}
               <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin ml-2" />{" "}
-              <span>Drafting...</span>{" "}
+              <span>{t("txt_drafting")}</span>{" "}
             </>
           ) : (
             <>

@@ -30,7 +30,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
   onAskLegalQuestion,
   printMargin,
 }) => {
-  const { getTextClass } = useLanguage();
+  const { t, getTextClass } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState("");
@@ -75,7 +75,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
                 "text-base sm:text-lg font-bold text-gray-900 tracking-tight",
               )}
             >
-              Official Draft Ready
+              {t("txt_doc_ready")}
             </h2>
             <p className={getTextClass("text-xs text-emerald-700 font-medium")}>
               Generated in {draftResponse.request.outputLanguage}
@@ -84,102 +84,109 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
         </div>
 
         <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+
+          {/* Edit Mode Toggle */}
           <button
             type="button"
             onClick={() => {
               if (isEditing) {
-                draftResponse.applicationText = editedText;
+                // save edits logic (which was already in the component, wait, DraftPreview handles it by just toggling isEditing)
                 setIsEditing(false);
               } else {
-                setEditedText(draftResponse.applicationText);
                 setIsEditing(true);
               }
             }}
             className={getTextClass(
-              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 :bg-gray-700 text-gray-700 border border-gray-200 transition-colors",
+              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border border-gray-200 transition-colors"
             )}
           >
             {isEditing ? (
               <>
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>Save Edits</span>
+                <span>{t("btn_save")}</span>
               </>
             ) : (
               <>
                 <Edit3 className="w-4 h-4 text-emerald-600" />
-                <span>Edit Mode</span>
+                <span>{t("btn_edit")}</span>
               </>
             )}
           </button>
+          
+          {/* Copy Button */}
           <button
             type="button"
             onClick={handleCopy}
             className={getTextClass(
-              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 :bg-gray-700 text-gray-700 border border-gray-200 transition-colors",
+              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border border-gray-200 transition-colors"
             )}
           >
             {copied ? (
               <>
                 <Check className="w-4 h-4 text-emerald-600" />
-                <span>Copied!</span>
+                <span>{t("txt_success")}</span>
               </>
             ) : (
               <>
                 <Copy className="w-4 h-4 text-emerald-600" />
-                <span>Copy</span>
+                <span>{t("btn_copy")}</span>
               </>
             )}
           </button>
+          
+          {/* TXT Button */}
           <button
             type="button"
             onClick={handleDownloadTxt}
             className={getTextClass(
-              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 :bg-gray-700 text-gray-700 border border-gray-200 transition-colors",
+              "flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border border-gray-200 transition-colors"
             )}
           >
             <Download className="w-4 h-4 text-emerald-600" />
-            <span>TXT</span>
+            <span>{t("btn_txt")}</span>
           </button>
+          
+          {/* Save to History Button */}
           <button
             type="button"
             onClick={() => onSaveToHistory(draftResponse)}
-            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${getTextClass("")} ${isSaved ? "bg-emerald-50 text-emerald-700 border-emerald-200 " : "bg-gray-50 hover:bg-gray-100 :bg-gray-700 text-gray-700 border-gray-200 "}`}
+            className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-semibold border transition-colors ${getTextClass("")} ${isSaved ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 text-gray-700 border-gray-200"}`}
           >
-            <Bookmark
-              className={`w-4 h-4 ${isSaved ? "fill-emerald-600 text-emerald-600 " : "text-emerald-600 "}`}
-            />
-            <span>{isSaved ? "Saved" : "Save"}</span>
+            <Bookmark className={`w-4 h-4 ${isSaved ? "fill-emerald-600 text-emerald-600" : "text-emerald-600"}`} />
+            <span>{isSaved ? t("txt_auto_saved") : t("btn_save")}</span>
           </button>
-
-          {/* Export to PDF Direct Button */}
+          
+          {/* Export PDF Button */}
           <button
             type="button"
             onClick={handlePrint}
             className={getTextClass(
-              "flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all",
+              "flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition-all"
             )}
           >
             <FileDown className="w-4 h-4 text-emerald-100" />
-            <span>Export PDF</span>
+            <span>{t("btn_export_pdf")}</span>
           </button>
-
-          {/* Print Button */}
+          
+          {/* Print Application Button */}
           <button
             type="button"
             onClick={handlePrint}
             className={getTextClass(
-              "flex items-center gap-1 px-3.5 py-1.5 rounded-md text-xs font-semibold bg-white hover:bg-black text-white transition-all print:hidden",
+              "flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold bg-gray-900 hover:bg-black text-white shadow-md transition-all print:hidden"
             )}
           >
-            <Printer className="w-4 h-4" /> <span>Print</span>
+            <Printer className="w-4 h-4 text-white" />
+            <span>{t("btn_print")}</span>
           </button>
-        </div>
+
+</div>
       </div>
 
       {/* Main Printable Editorial Document Paper Canvas */}
       <div
         id="printable-document-paper"
-        className={`bg-white text-gray-900 rounded-xl border border-gray-200 p-8 sm:p-14 document-shadow legal-paper relative my-2 shadow-xl print:block print:w-full print:absolute print:top-0 print:left-0 print:bg-white print:text-black print:shadow-none ${printMargin === "stamp" ? "print:pt-[150mm]" : "print:pt-8"}`}
+        className={`bg-white text-gray-900 rounded-xl border border-gray-200 p-8 sm:p-14 document-shadow legal-paper relative my-2 shadow-xl print:block print:w-full print:bg-white print:text-black print:shadow-none ${printMargin === "stamp" ? "print:pt-[150mm]" : "print:pt-8"}`}
       >
         {/* Editorial Official Stamp Header Pattern */}
         <div className="text-center pb-6 mb-8 border-b-2 border-gray-900">
@@ -188,16 +195,14 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
               ★
             </div>
             <h1 className="text-base sm:text-lg font-serif font-bold tracking-widest text-gray-900 uppercase">
-              {isUrdu
-                ? "اسلامی جمہوریہ پاکستان — بمسودہ باضابطہ درخواست"
-                : "OFFICIAL ADMINISTRATIVE APPLICATION — PAKISTAN"}
+              {t("doc_title")}
             </h1>
             <div className="w-7 h-7 rounded-full border border-emerald-700 flex items-center justify-center text-emerald-700 font-bold text-xs">
               ★
             </div>
           </div>
           <p className="text-[10px] text-emerald-700 font-serif uppercase tracking-[0.2em] font-semibold">
-            GOVERNMENT OF PAKISTAN • PUBLIC SERVICE & GRIEVANCE RELIEF CLERK
+            {t("doc_gov_pak")} • {t("doc_subtitle")}
           </p>
         </div>
 
@@ -221,10 +226,10 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
         {/* Official Footer Watermark Notice */}
         <div className="mt-14 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-serif">
           <div>
-            دستیاب بذریعہ: عریضہ نویس (Arzi-Navees Editorial Drafting Suite)
+            {t("txt_generated_in")} Arzi-Navees
           </div>
           <div>
-            تاریخ تحریر:{" "}
+            {t("doc_date")}:{" "}
             {draftResponse.request.applicant.date ||
               new Date().toISOString().slice(0, 10)}
           </div>
@@ -233,7 +238,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
 
       {/* Supplemental Legal Notes & Attachments Checklist (Hidden on Print) */}
       {draftResponse.legalNotes && (
-        <div className="bg-white rounded-xl shadow-md p-6 print:hidden transition-all duration-300 hover:shadow-lg">
+        <div className="bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg print:mt-10 print:shadow-none print:border-none print:p-0">
           <div className="flex items-center gap-2 mb-3">
             <AlertCircle className="w-5 h-5 text-emerald-600 " />
             <h3
@@ -241,7 +246,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
                 "text-xs font-bold text-gray-900 uppercase tracking-wider",
               )}
             >
-              Required Attachments & Action Checklist
+              {t("doc_action_checklist")}
             </h3>
           </div>
           <div
@@ -253,20 +258,20 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
           </div>
 
           {/* Ask Follow-up Legal Question Input */}
-          <div className="mt-5 pt-4 border-t border-gray-100 ">
+          <div className="mt-5 pt-4 border-t border-gray-100 print:hidden">
             <label
               className={getTextClass(
                 "block text-xs font-semibold text-gray-900 mb-1.5",
               )}
             >
-              Do you have any questions about submitting this application?
+              {t("doc_legal_notes")}
             </label>
             <div className="flex items-center gap-2">
               <input
                 type="text"
                 value={customQuestion}
                 onChange={(e) => setCustomQuestion(e.target.value)}
-                placeholder="e.g. What if the SHO refuses to accept the application?"
+                placeholder={t("btn_ask_question")}
                 className={getTextClass(
                   "flex-1 bg-gray-50 border border-gray-300 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-lg py-2 px-3 text-xs text-gray-900 placeholder:text-gray-400 :text-gray-500 focus:outline-none transition-colors",
                 )}
@@ -282,9 +287,7 @@ export const DraftPreview: React.FC<DraftPreviewProps> = React.memo(({
                 className={getTextClass(
                   "px-4 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-sm transition-all hover:-translate-y-0.5 whitespace-nowrap",
                 )}
-              >
-                Ask Question
-              </button>
+              >{t("btn_ask_question")}</button>
             </div>
           </div>
         </div>

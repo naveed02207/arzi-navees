@@ -11,7 +11,9 @@ interface GuideModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+import { useLanguage } from "../contexts/LanguageContext";
 export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm no-print overflow-y-auto">
@@ -26,7 +28,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
             <BookOpen className="w-5 h-5 text-[#8B735B]" />{" "}
             <h2 className="text-base sm:text-lg font-bold font-urdu text-[#1C1C1C]">
               {" "}
-              پاکستان میں سرکاری درخواستی عمل اور شہری حقوق کی رہنمائی{" "}
+              {t("txt_guide_title")}{" "}
             </h2>{" "}
           </div>{" "}
           <button
@@ -113,7 +115,7 @@ export const GuideModal: React.FC<GuideModalProps> = ({ isOpen, onClose }) => {
             className="px-6 py-2.5 rounded-lg bg-[#8B735B] hover:bg-[#735F4B] text-white font-bold text-xs uppercase tracking-wider font-urdu shadow-sm"
           >
             {" "}
-            سمجھ گئے (Close){" "}
+            {t("btn_close_understood")}{" "}
           </button>{" "}
         </div>{" "}
       </div>{" "}

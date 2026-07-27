@@ -169,8 +169,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                 <FileText className="h-4 w-4 text-gray-400" />
               </div>
               <select className={getTextClass("w-full ps-10 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-lg py-2.5 text-sm text-gray-900 outline-none transition-colors appearance-none")}>
-                <option value="standard">Standard (14pt)</option>
-                <option value="large">Large (16pt)</option>
+                <option value="standard">{t("settings_font_standard") as string}</option>
+                <option value="large">{t("settings_font_large") as string}</option>
               </select>
             </div>
           </div>
@@ -193,8 +193,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                 onChange={(e) => onPrintMarginChange(e.target.value)}
                 className={getTextClass("w-full ps-10 bg-gray-50 border border-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-transparent rounded-lg py-2.5 text-sm text-gray-900 outline-none transition-colors appearance-none")}
               >
-                <option value="standard">Standard (1 inch)</option>
-                <option value="stamp">Stamp Paper Margin (Top 3 inches)</option>
+                <option value="standard">{t("settings_margin_standard") as string}</option>
+                <option value="stamp">{t("settings_margin_stamp") as string}</option>
               </select>
             </div>
           </div>

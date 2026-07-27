@@ -90,13 +90,13 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
               <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-100 ">
                 {" "}
                 <Save className="w-2.5 h-2.5" />{" "}
-                <span className={getTextClass("")}>Auto-Saved</span>{" "}
+                <span className={getTextClass("")}>{t("txt_auto_saved")}</span>{" "}
               </span>
             )}{" "}
           </div>{" "}
           <p className={getTextClass("text-xs text-gray-500 mt-0.5")}>
             {" "}
-            Your details are saved locally for future use{" "}
+            {t("txt_saved_locally")}{" "}
           </p>{" "}
         </div>{" "}
         <div className="flex items-center gap-2">
@@ -112,7 +112,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
             )}
           >
             {" "}
-            Auto-fill{" "}
+            {t("btn_auto_fill")}{" "}
           </button>{" "}
           {hasStoredData && (
             <button
@@ -167,7 +167,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
               />{" "}
             </div>{" "}
           </div>{" "}
-          {/* Father/Husband Name */}{" "}
+          {/* {t("placeholder_father_name")} */}{" "}
           <div className="space-y-1">
             {" "}
             <label
@@ -176,7 +176,7 @@ export const ApplicantForm: React.FC<ApplicantFormProps> = React.memo(({
               )}
             >
               {" "}
-              Father/Husband Name{" "}
+              {t("placeholder_father_name")}{" "}
             </label>{" "}
             <div className="relative">
               {" "}

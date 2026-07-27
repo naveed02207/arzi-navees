@@ -101,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="p-4 border-t border-emerald-600/30">
           <div className="text-xs text-center text-white/80 font-medium">
             Arzi-Navees v5.0<br />
-            Official Suite
+            {t("txt_official_suite")}
           </div>
         </div>
       </aside>

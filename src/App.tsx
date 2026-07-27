@@ -301,11 +301,11 @@ export default function App() {
                         setDraftResponse(null);
                       }}
                       className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white hover:bg-gray-50 text-gray-700 text-sm font-bold border border-gray-200 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md uppercase tracking-wider"
-                      title="Reset Form"
+                      title={t("btn_reset")}
                     >
                       {" "}
                       <RotateCcw className="w-4 h-4 text-emerald-600" />{" "}
-                      <span>Reset Form</span>{" "}
+                      <span>{t("btn_reset")}</span>{" "}
                     </button>{" "}
                   </div>{" "}
                 </div>{" "}
@@ -373,7 +373,7 @@ export default function App() {
             />
           )}{" "}
           {activeView === "settings" && (
-            <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading...</div>}><SettingsView
+            <Suspense fallback={<div className="p-8 text-center text-gray-500">{t("txt_loading")}</div>}><SettingsView
               printMargin={printMargin}
               onPrintMarginChange={setPrintMargin}
               applicant={applicant}

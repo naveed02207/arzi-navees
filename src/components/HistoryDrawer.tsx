@@ -17,6 +17,7 @@ interface HistoryDrawerProps {
   onDeleteDraft: (id: string) => void;
   onClearAll: () => void;
 }
+import { useLanguage } from "../contexts/LanguageContext";
 export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
   isOpen,
   onClose,
@@ -25,6 +26,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
   onDeleteDraft,
   onClearAll,
 }) => {
+  const { t } = useLanguage();
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/40 backdrop-blur-sm no-print">
@@ -39,7 +41,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
             <Bookmark className="w-5 h-5 text-[#8B735B]" />{" "}
             <h2 className="text-base font-bold font-urdu text-[#1C1C1C]">
               {" "}
-              محفوظ شدہ درخواستیں ({savedDrafts.length}){" "}
+              {t("txt_saved_drafts")} ({savedDrafts.length}){" "}
             </h2>{" "}
           </div>{" "}
           <button
@@ -58,7 +60,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
               {" "}
               <FileText className="w-10 h-10 mx-auto mb-2 opacity-30 text-[#8B735B]" />{" "}
               <p className="text-sm">
-                ابھی تک کوئی درخواست محفوظ نہیں کی گئی۔
+                {t("txt_no_saved_drafts")}
               </p>{" "}
             </div>
           ) : (
@@ -95,13 +97,13 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
                     className="flex items-center gap-1 text-[#8B735B] hover:text-[#735F4B] font-urdu text-[11px] font-semibold"
                   >
                     {" "}
-                    <span>دوبارہ کھولیں</span>{" "}
+                    <span>{t("txt_reopen")}</span>{" "}
                     <ExternalLink className="w-3 h-3" />{" "}
                   </button>{" "}
                   <button
                     onClick={() => onDeleteDraft(item.id)}
                     className="text-rose-600 hover:text-rose-800 p-1 transition-colors"
-                    title="حذف کریں"
+                    title={t("txt_delete")}
                   >
                     {" "}
                     <Trash2 className="w-3.5 h-3.5" />{" "}
@@ -121,7 +123,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({
             >
               {" "}
               <Trash2 className="w-3.5 h-3.5" />{" "}
-              <span>تمام ریکارڈ صاف کریں</span>{" "}
+              <span>{t("txt_clear_all")}</span>{" "}
             </button>{" "}
           </div>
         )}{" "}
