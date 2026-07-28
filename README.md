@@ -93,15 +93,9 @@ https://github.com/naveed02207/arzi-navees
 
 # ❗ Problem Statement
 
-
-
 Writing formal Government applications in Pakistan is often difficult for ordinary citizens.
 
-
-
 Many people:
-
-
 
 - Do not know formal administrative language.
 
@@ -113,11 +107,7 @@ Many people:
 
 - Spend unnecessary time and money preparing simple Government applications.
 
-
-
 Whether applying to Police, NADRA, WAPDA, Universities, Municipal Committees, or other Government departments, many citizens struggle to produce professionally written applications.
-
-
 
 ---
 
@@ -125,19 +115,11 @@ Whether applying to Police, NADRA, WAPDA, Universities, Municipal Committees, or
 
 # 💡 Solution
 
-
-
 Arzi-Navees removes this barrier by using Artificial Intelligence to instantly convert ordinary complaints into professionally formatted Government applications.
-
-
 
 Instead of paying traditional petition writers, users simply describe their issue in everyday language.
 
-
-
 Google Gemini AI analyses the complaint and generates a polished Government application that is ready for:
-
-
 
 - Printing
 
@@ -150,7 +132,6 @@ Google Gemini AI analyses the complaint and generates a polished Government appl
 - Official Submission
 
 
-
 ---
 
 
@@ -161,65 +142,22 @@ Google Gemini AI analyses the complaint and generates a polished Government appl
 
 ```
 
-Citizen
-
-
-
-↓
-
-
-
+        Citizen
+           ↓
 Select Government Department
-
-
-
-↓
-
-
-
+           ↓
 Fill Applicant Details
-
-
-
-↓
-
-
-
+           ↓
 Write Complaint
-
 (English / Urdu / Roman Urdu)
-
-
-
-↓
-
-
-
-Google Gemini AI
-
-
-
-↓
-
-
-
+           ↓
+  Google Gemini AI
+           ↓
 Professional Government Draft
-
-
-
-↓
-
-
-
-Review & Edit
-
-
-
-↓
-
-
-
-Export PDF / Print
+           ↓
+    Review & Edit
+           ↓
+    Export PDF / Print
 
 ```
 
@@ -227,15 +165,10 @@ Export PDF / Print
 
 ---
 
-
-
 # ✨ Features
 
 
-
 ## 🤖 AI Features
-
-
 
 - AI-powered Government application drafting
 
@@ -247,15 +180,9 @@ Export PDF / Print
 
 - Formal Government formatting
 
-
-
 ---
 
-
-
 ## 🌐 Language Support
-
-
 
 - English Interface
 
@@ -267,15 +194,11 @@ Export PDF / Print
 
 - Nastaleeq Urdu Typography
 
-
-
 ---
 
 
 
 ## 🏛 Government Departments
-
-
 
 Supports application drafting for departments including:
 
@@ -294,14 +217,11 @@ Supports application drafting for departments including:
 - Deputy Commissioner / Ombudsman
 
 
-
 ---
 
 
 
 ## 📄 Draft Management
-
-
 
 - Generate Official Application
 
@@ -315,15 +235,11 @@ Supports application drafting for departments including:
 
 - Auto-fill Applicant Information
 
-
-
 ---
 
 
 
 ## 📤 Export Features
-
-
 
 - Professional Print Layout
 
@@ -335,15 +251,11 @@ Supports application drafting for departments including:
 
 - Government-style Document Design
 
-
-
 ---
 
 
 
 ## ⚙ Settings
-
-
 
 - Output Language
 
@@ -353,15 +265,11 @@ Supports application drafting for departments including:
 
 - Applicant Auto Save
 
-
-
 ---
 
 
 
 ## 📱 User Experience
-
-
 
 - Responsive Design
 
@@ -375,8 +283,6 @@ Supports application drafting for departments including:
 
 - Accessibility Friendly
 
-
-
 ---
 
 
@@ -384,18 +290,12 @@ Supports application drafting for departments including:
 # 🤖 AI Feature
 
 
-
 The core intelligence of Arzi-Navees is powered by **Google Gemini AI**.
-
 
 
 Instead of relying on fixed templates, the application uses prompt engineering to understand the user's complaint and transform it into a professionally structured Government application.
 
-
-
 The AI is instructed to:
-
-
 
 - Understand informal complaints.
 
@@ -409,8 +309,6 @@ The AI is instructed to:
 
 - Avoid unnecessary conversational responses.
 
-
-
 The backend securely communicates with Google Gemini using a protected server-side API, ensuring that API credentials are never exposed to the client.
 
 
@@ -420,7 +318,6 @@ The backend securely communicates with Google Gemini using a protected server-si
 
 
 # 🛠 Technology Stack
-
 
 
 | Category | Technology |
@@ -460,8 +357,6 @@ The backend securely communicates with Google Gemini using a protected server-si
 
 
 The application follows a secure client-server architecture where all AI interactions are handled on the backend to prevent API key exposure.
-
-
 
 ```text
 
@@ -569,14 +464,13 @@ arzi-navees/
 
 ```bash
 
-git clone https://github.com/YOUR_USERNAME/arzi-navees.git
+https://github.com/naveed02207/arzi-navees.gits
 
 ```
 
 
 
 ## 2. Enter Project
-
 
 
 ```bash
@@ -600,7 +494,6 @@ npm install
 
 
 ## 4. Create Environment File
-
 
 
 Create a `.env` file in the project root.
@@ -681,14 +574,11 @@ npm run preview
 
 # 🔐 Environment Variables
 
-
-
 | Variable | Description |
 
 |-----------|-------------|
 
 | `GEMINI_API_KEY` | Google Gemini API Key used securely by the backend Express server. |
-
 
 
 > **Security Notice:**  
@@ -698,8 +588,6 @@ npm run preview
 
 
 ---
-
-
 
 # 🚀 How to Use
 
@@ -1001,7 +889,7 @@ Ready-to-use templates help users quickly generate applications for common Gover
 
 
 
-![Templates](README-assets/2.png)
+![Templates](README-assets/3.png)
 
 
 
@@ -1017,7 +905,7 @@ Google Gemini AI converts informal complaints written in English, Urdu, or Roman
 
 
 
-![Generated Application](README-assets/3.png) 
+![Generated Application](README-assets/2.png) 
 
 
 
@@ -1029,8 +917,7 @@ Complete Right-to-Left (RTL) interface with Urdu localisation and Nastaleeq typo
 
 
 
-![Urdu Interface](README-assets/urdu-mode.png)
-
+![Urdu Interface](README-assets/4.png)
 
 
 ---
@@ -1181,8 +1068,6 @@ Special thanks to the developers and maintainers of these technologies for enabl
 
 This project is licensed under the **MIT License**.
 
-
-
 Feel free to use, modify, and learn from this project while respecting the terms of the license.
 
 
@@ -1207,7 +1092,7 @@ University of Education, Vehari Campus
 
 
 
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/naveed02207/arzi-navees
 
 
 
