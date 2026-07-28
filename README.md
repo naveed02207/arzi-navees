@@ -7,24 +7,13 @@
 
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
-
 ![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
-
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white)
-
 ![Express](https://img.shields.io/badge/Express.js-Backend-000000?logo=express)
-
 ![Google Gemini](https://img.shields.io/badge/Google-Gemini_AI-4285F4?logo=google&logoColor=white)
-
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-
-
 </p>
-
-
 
 > **AI-Powered Government Application Drafting Assistant for Pakistan**
 
